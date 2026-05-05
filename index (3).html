@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#FBF8F4">
+<title>Programım — Hatice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: 'h4HOZ5moJJFACZNWM' });
+    }
+  })();
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #FBF8F4; --surface: #FFFFFF; --surface-soft: #FAF4F0;
+    --primary: #B85A78; --primary-light: #F5E0E5; --primary-dark: #6D2A45;
+    --accent: #8B7BA8; --accent-light: #E8E2F0; --accent-dark: #4A3D6B;
+    --sage: #6B9A6E; --sage-light: #E5EFE0;
+    --gold: #B8924A; --gold-light: #F5EBD3; --gold-deep: #7A5C1F;
+    --rose: #D88A8A; --rose-light: #FBEDED;
+    --plum: #4A1F3A;
+    --text: #2A1F26; --text-soft: #6E5F66; --text-faded: #A89DA1;
+    --border: rgba(74, 31, 58, 0.08); --border-soft: rgba(74, 31, 58, 0.04);
+    --shadow: 0 1px 3px rgba(74, 31, 58, 0.04), 0 4px 12px rgba(74, 31, 58, 0.04);
+    --shadow-card: 0 2px 8px rgba(184, 90, 120, 0.06);
+    --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-arabic: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+  }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    min-height: 100vh; padding-bottom: 100px;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 90, 120, 0.05) 0%, transparent 45%),
+      radial-gradient(circle at 80% 90%, rgba(139, 123, 168, 0.05) 0%, transparent 45%),
+      url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath fill='none' stroke='%23B85A78' stroke-width='0.5' opacity='0.06' d='M40 8 L52 28 L72 28 L56 42 L62 62 L40 50 L18 62 L24 42 L8 28 L28 28 Z'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+  }
+  .app { max-width: 720px; margin: 0 auto; padding: 16px 14px; }
+  .setup-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; text-align: center; padding: 20px; }
+  .setup-screen .ornament { font-size: 56px; margin-bottom: 28px; color: var(--primary); font-family: var(--font-display); line-height: 1; }
+  .setup-screen h1 { font-size: 32px; font-weight: 400; color: var(--primary-dark); margin-bottom: 12px; font-family: var(--font-display); font-style: italic; letter-spacing: -0.02em; }
+  .setup-screen p { color: var(--text-soft); margin-bottom: 32px; max-width: 320px; font-size: 14px; }
+  .setup-screen input { width: 100%; max-width: 280px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 14px; font-size: 16px; background: var(--surface); color: var(--text); margin-bottom: 16px; text-align: center; font-family: inherit; outline: none; transition: border-color 0.2s; }
+  .setup-screen input:focus { border-color: var(--primary); }
+  .setup-screen button { background: var(--primary); color: white; border: none; border-radius: 14px; padding: 14px 36px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+  .setup-screen button:active { transform: scale(0.97); }
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 22px; padding: 8px 4px 0; }
+  .greeting .salam { font-size: 11px; color: var(--text-soft); letter-spacing: 0.6px; text-transform: uppercase; font-weight: 500; }
+  .greeting .name { font-size: 28px; font-weight: 400; color: var(--primary-dark); margin-top: 4px; font-family: var(--font-display); font-style: italic; letter-spacing: -0.02em; line-height: 1; }
+  .date-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; text-align: right; box-shadow: var(--shadow); }
+  .date-pill .day { font-size: 13px; font-weight: 600; color: var(--primary); font-family: var(--font-display); font-style: italic; }
+  .date-pill .date { font-size: 11px; color: var(--text-soft); margin-top: 2px; letter-spacing: 0.3px; }
+  .tabs { display: flex; background: var(--surface); border-radius: 16px; padding: 5px; margin-bottom: 20px; box-shadow: var(--shadow); border: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 2px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1; min-width: 64px; padding: 11px 8px; border: none; background: transparent; color: var(--text-soft); font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 11px; font-family: var(--font-body); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; letter-spacing: 0.2px; }
+  .tab.active { background: var(--primary); color: white; box-shadow: 0 2px 8px rgba(184, 90, 120, 0.25); }
+  .tab:not(.active):hover { background: var(--surface-soft); color: var(--primary-dark); }
+  .view { display: none; }
+  .view.active { display: block; animation: fadeIn 0.3s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .stats { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto auto; gap: 10px; margin-bottom: 20px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow-card); position: relative; overflow: hidden; }
+  .stat-card.progress { grid-row: 1 / 3; padding: 20px 18px; background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%); }
+  .stat-card .label { font-size: 10px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; font-weight: 500; }
+  .stat-card .number { font-size: 24px; font-weight: 400; font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1; }
+  .stat-card.progress .number { font-size: 56px; font-weight: 300; color: var(--sage); }
+  .stat-card .unit { font-size: 11px; color: var(--text-soft); margin-left: 4px; font-family: var(--font-body); }
+  .stat-card.progress .unit { font-size: 18px; }
+  .stat-card.streak .number { color: var(--gold-deep); }
+  .stat-card.sport .number { color: var(--accent-dark); }
+  .stat-card.kuran .number { color: var(--primary-dark); }
+  .chain { display: flex; gap: 3px; margin-top: 8px; }
+  .chain .link { flex: 1; height: 4px; background: var(--gold-light); border-radius: 2px; transition: background 0.4s; }
+  .chain .link.filled { background: var(--gold); }
+  .progress-bar { height: 6px; background: var(--sage-light); border-radius: 3px; margin-top: 14px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--sage) 0%, #8FBA92 100%); border-radius: 3px; transition: width 0.6s ease; }
+  .banner { background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%); border-radius: 16px; padding: 14px 18px; margin-bottom: 20px; font-size: 14px; color: var(--primary-dark); text-align: center; line-height: 1.5; border: 1px solid rgba(184, 90, 120, 0.12); font-family: var(--font-display); font-style: italic; font-weight: 400; }
+  .section-title { font-size: 11px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1.2px; margin: 22px 4px 12px; display: flex; align-items: center; gap: 10px; }
+  .section-title::before { content: ''; width: 14px; height: 1px; background: var(--primary); }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border) 0%, transparent 100%); }
+  .sentence-card { background: var(--surface); border-radius: 16px; padding: 16px 18px; margin-bottom: 10px; border: 1px solid var(--border); position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .sentence-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; }
+  .sentence-card.en::before { background: linear-gradient(180deg, #5C7CB8 0%, #8FA9D6 100%); }
+  .sentence-card.ar::before { background: linear-gradient(180deg, var(--accent-dark) 0%, var(--accent) 100%); }
+  .sentence-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(74, 31, 58, 0.06); }
+  .sentence-context { font-size: 11px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; margin-bottom: 10px; font-family: var(--font-display); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 12px; color: var(--primary); }
+  .sentence-card.en .sentence-context { color: #4A6CB8; }
+  .sentence-card.ar .sentence-context { color: var(--accent-dark); }
+  .sentence-en { font-size: 17px; font-weight: 500; color: #2C4A8C; margin-bottom: 8px; line-height: 1.45; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; font-family: var(--font-display); letter-spacing: -0.01em; }
+  .sentence-ar { font-size: 19px; font-weight: 500; color: var(--accent-dark); margin-bottom: 6px; line-height: 1.7; direction: rtl; font-family: var(--font-arabic); display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .sentence-latin { font-size: 12.5px; color: var(--accent); font-style: italic; margin-bottom: 8px; line-height: 1.5; font-family: var(--font-display); }
+  .sentence-tr { font-size: 13.5px; color: var(--text); line-height: 1.5; padding: 8px 12px; background: var(--surface-soft); border-radius: 10px; border-left: 2px solid var(--border); }
+  .pronounce-inline { background: transparent; border: 1px solid currentColor; border-radius: 50%; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; opacity: 0.6; color: inherit; }
+  .pronounce-inline:hover { background: currentColor; opacity: 1; }
+  .pronounce-inline:hover svg { stroke: white; }
+  .pronounce-inline:active { transform: scale(0.92); }
+  .sentence-actions { margin-top: 10px; display: flex; gap: 8px; }
+  .sentence-action { background: transparent; border: 1px solid var(--border); padding: 7px 14px; border-radius: 10px; font-size: 12px; font-weight: 500; color: var(--text-soft); cursor: pointer; font-family: var(--font-body); transition: all 0.2s; letter-spacing: 0.2px; }
+  .sentence-action:hover { border-color: var(--primary); color: var(--primary); }
+  .sentence-action.done { background: var(--sage); color: white; border-color: var(--sage); }
+  .dua-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow-card); }
+  .dua-intro { background: var(--accent-light); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; font-size: 12px; color: var(--accent-dark); line-height: 1.5; display: flex; flex-direction: column; gap: 8px; }
+  .dua-toggle-btn { background: white; border: 1px solid var(--accent); color: var(--accent-dark); border-radius: 8px; padding: 6px 12px; font-size: 11px; cursor: pointer; font-family: inherit; align-self: flex-start; transition: all 0.2s; }
+  .dua-toggle-btn:hover { background: var(--accent); color: white; }
+  .dua-aciklama { background: var(--surface-soft); border-radius: 8px; padding: 8px 10px; font-size: 11px; color: var(--text-soft); line-height: 1.5; margin-top: 8px; font-style: italic; }
+  .dua-source { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-soft); font-size: 10px; }
+  .dua-source span { color: var(--primary); font-weight: 500; }
+  .dua-source a { color: var(--text-faded); text-decoration: none; font-style: italic; }
+  .dua-source a:hover { color: var(--accent); text-decoration: underline; }
+  .dua-card .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+  .dua-card .prayer-name { font-size: 13px; font-weight: 500; color: var(--primary-dark); }
+  .dua-card .prayer-time { font-size: 10px; color: var(--accent-dark); background: var(--accent-light); padding: 2px 8px; border-radius: 8px; }
+  .dua-card .arabic { font-size: 20px; color: var(--primary-dark); direction: rtl; text-align: right; line-height: 1.9; margin-bottom: 8px; font-family: var(--font-arabic); }
+  .dua-card .latin { font-size: 12px; color: var(--accent); font-style: italic; margin-bottom: 6px; line-height: 1.6; font-family: var(--font-display); }
+  .dua-card .meaning { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .dua-card .pronounce { background: var(--primary-light); border: none; border-radius: 8px; padding: 6px 12px; font-size: 11px; color: var(--primary-dark); font-weight: 500; cursor: pointer; margin-top: 8px; font-family: inherit; display: inline-flex; align-items: center; gap: 4px; }
+  .blocks { display: flex; flex-direction: column; gap: 8px; }
+  .block { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 13px 14px; display: flex; gap: 11px; align-items: flex-start; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); position: relative; animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .block:hover { border-color: var(--primary-light); transform: translateX(2px); }
+  .block.done { background: var(--surface-soft); opacity: 0.6; }
+  .block.done .title { text-decoration: line-through; color: var(--text-soft); }
+  .block-time { flex-shrink: 0; font-size: 11px; font-weight: 600; color: var(--primary); min-width: 42px; padding-top: 4px; font-family: var(--font-display); font-style: italic; letter-spacing: 0.3px; }
+  .block-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 10px; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; }
+  .block-icon.cat-kuran { background: var(--accent-light); color: var(--accent-dark); }
+  .block-icon.cat-rest { background: #F5F0E8; color: #B89968; }
+  .block-icon.cat-health { background: var(--sage-light); color: var(--sage); }
+  .block-icon.cat-school { background: var(--primary-light); color: var(--primary-dark); }
+  .block-icon.cat-skill { background: #E0EAF0; color: #4A7896; }
+  .block-icon.cat-creative { background: #FCE8DC; color: #C97B4F; }
+  .block-icon.cat-physical { background: var(--rose-light); color: var(--rose); }
+  .block-icon.cat-arabic { background: var(--accent-light); color: var(--accent-dark); }
+  .block-icon.cat-family { background: var(--primary-light); color: var(--primary-dark); }
+  .block-icon.cat-reflect { background: var(--gold-light); color: var(--gold); }
+  .block-icon.cat-prayer { background: #E8E2F0; color: var(--accent-dark); }
+  .block-content { flex: 1; min-width: 0; }
+  .block-content .title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; line-height: 1.35; letter-spacing: -0.005em; }
+  .block-content .desc { font-size: 12px; color: var(--text-soft); line-height: 1.45; }
+  .block-content .steps { margin-top: 10px; padding: 12px 14px; background: var(--surface-soft); border-radius: 10px; display: none; border-left: 2px solid var(--primary-light); }
+  .block.expanded .steps { display: block; animation: fadeIn 0.3s; }
+  .block-content .steps ol { margin-left: 18px; font-size: 12.5px; color: var(--text); line-height: 1.65; }
+  .block-content .steps li { margin-bottom: 5px; }
+  .block-content .note { margin-top: 10px; padding: 10px 12px; background: var(--gold-light); border-radius: 10px; font-size: 11.5px; color: var(--gold-deep); line-height: 1.5; display: none; font-style: italic; font-family: var(--font-display); }
+  .block.expanded .note { display: block; animation: fadeIn 0.3s; }
+  .block-check { flex-shrink: 0; width: 24px; height: 24px; border: 1.5px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); margin-top: 4px; }
+  .block.done .block-check { background: var(--sage); border-color: var(--sage); transform: scale(1.05); }
+  .block-check svg { display: none; }
+  .block.done .block-check svg { display: block; animation: checkIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @keyframes checkIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+  .kuran-tracker { background: linear-gradient(135deg, var(--accent-light) 0%, var(--primary-light) 100%); border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid rgba(155, 138, 181, 0.2); }
+  .kuran-tracker h3 { font-size: 16px; font-weight: 400; color: var(--accent-dark); margin-bottom: 4px; font-family: var(--font-display); font-style: italic; }
+  .kuran-tracker .subtitle { font-size: 12px; color: var(--text-soft); margin-bottom: 12px; }
+  .kuran-tracker .row { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .kuran-tracker .field { flex: 1; min-width: 120px; background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.5); border-radius: 10px; padding: 8px 10px; }
+  .kuran-tracker .field label { font-size: 10px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 3px; }
+  .kuran-tracker .field input { width: 100%; border: none; background: transparent; font-size: 14px; font-weight: 500; color: var(--accent-dark); outline: none; font-family: inherit; }
+  .kuran-tracker .photo-row { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  .kuran-tracker .photo-btn { background: white; border: 1px dashed var(--accent); color: var(--accent-dark); border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; min-width: 140px; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .kuran-tracker .photo-btn input { display: none; }
+  .kuran-tracker .photo-preview { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border); display: none; }
+  .kuran-tracker .photo-preview.show { display: block; }
+  .kuran-tracker .voice-toggle { background: rgba(255,255,255,0.6); border: none; color: var(--accent-dark); border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+  .kuran-tracker .voice-toggle.active { background: var(--sage); color: white; }
+  .kuran-tracker .science-note { background: rgba(255,255,255,0.5); border-radius: 8px; padding: 8px 10px; font-size: 11px; color: var(--text); line-height: 1.5; margin-top: 10px; border-left: 2px solid var(--accent); }
+  .sport-card { background: linear-gradient(135deg, var(--rose-light) 0%, var(--surface) 100%); border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid var(--rose-light); }
+  .sport-card .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .sport-card h3 { font-size: 14px; font-weight: 500; color: #B85959; }
+  .sport-card .week-pill { background: var(--rose); color: white; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 10px; }
+  .sport-card .subtitle { font-size: 12px; color: var(--text-soft); margin-bottom: 12px; }
+  .exercise-list { display: flex; flex-direction: column; gap: 6px; }
+  .exercise { background: rgba(255,255,255,0.7); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.2s; }
+  .exercise:hover { background: white; }
+  .exercise.done { background: var(--sage-light); }
+  .exercise .ex-check { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--rose); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .exercise.done .ex-check { background: var(--sage); border-color: var(--sage); }
+  .exercise .ex-check svg { display: none; }
+  .exercise.done .ex-check svg { display: block; }
+  .exercise .ex-content { flex: 1; }
+  .exercise .ex-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .exercise.done .ex-name { text-decoration: line-through; color: var(--text-soft); }
+  .exercise .ex-detail { font-size: 11px; color: var(--text-soft); }
+  .sahabe-card { background: linear-gradient(135deg, var(--gold-light) 0%, var(--surface) 100%); border-radius: 16px; padding: 18px; margin-bottom: 12px; border: 1px solid var(--gold-light); }
+  .sahabe-card .week-tag { display: inline-block; font-size: 10px; font-weight: 500; background: var(--gold); color: white; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .sahabe-card .name { font-size: 20px; font-weight: 400; color: var(--gold-deep); margin-bottom: 4px; font-family: var(--font-display); font-style: italic; }
+  .sahabe-card .title-line { font-size: 12px; color: var(--text-soft); margin-bottom: 12px; font-style: italic; }
+  .sahabe-card .story { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 10px; }
+  .sahabe-card .lesson { background: rgba(255,255,255,0.7); border-left: 3px solid var(--gold); padding: 10px 12px; border-radius: 8px; font-size: 12px; color: var(--text); line-height: 1.5; font-style: italic; }
+  .watch-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 8px; box-shadow: var(--shadow-card); }
+  .watch-card .channel { font-size: 11px; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+  .watch-card .title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .watch-card .desc { font-size: 12px; color: var(--text-soft); line-height: 1.5; }
+  .creative-card { background: linear-gradient(135deg, #FCE8DC 0%, var(--surface) 100%); border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid #FCE8DC; }
+  .creative-card h3 { font-size: 14px; font-weight: 500; color: #C97B4F; margin-bottom: 4px; }
+  .creative-card .prompt { background: rgba(255,255,255,0.7); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--text); margin: 10px 0; line-height: 1.5; font-style: italic; }
+  .creative-card textarea { width: 100%; min-height: 100px; border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 14px; font-family: inherit; background: white; color: var(--text); outline: none; resize: vertical; line-height: 1.6; }
+  .creative-card textarea:focus { border-color: var(--primary); }
+  .creative-card .word-count { font-size: 11px; color: var(--text-soft); margin-top: 4px; text-align: right; }
+  .book-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; box-shadow: var(--shadow-card); }
+  .book-card h3 { font-size: 14px; font-weight: 500; color: var(--primary-dark); margin-bottom: 4px; }
+  .book-card .row { display: flex; gap: 8px; margin: 10px 0 8px; flex-wrap: wrap; }
+  .book-card input, .book-card textarea { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 13px; font-family: inherit; background: var(--surface-soft); color: var(--text); outline: none; resize: vertical; }
+  .book-card .row input { flex: 1; min-width: 100px; }
+  .book-card textarea { min-height: 60px; line-height: 1.5; }
+  .book-card input:focus, .book-card textarea:focus { border-color: var(--primary); background: white; }
+  .book-card .label { font-size: 11px; color: var(--text-soft); margin-bottom: 4px; }
+  .journal-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow-card); }
+  .journal-card h3 { font-size: 14px; font-weight: 500; color: var(--primary-dark); margin-bottom: 4px; }
+  .journal-card .subtitle { font-size: 11px; color: var(--text-soft); margin-bottom: 12px; }
+  .journal-line { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .journal-num { width: 22px; height: 22px; border-radius: 50%; background: var(--primary-light); color: var(--primary-dark); font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 4px; }
+  .journal-input { flex: 1; border: none; border-bottom: 1px solid var(--border); background: transparent; padding: 6px 0; font-size: 13px; color: var(--text); font-family: inherit; outline: none; transition: border-color 0.2s; resize: none; line-height: 1.5; min-height: 26px; }
+  .journal-input:focus { border-color: var(--primary); }
+  .journal-input::placeholder { color: var(--text-faded); }
+  .week-day { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; margin-bottom: 8px; box-shadow: var(--shadow-card); }
+  .week-day-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .week-day-name { font-size: 14px; font-weight: 500; color: var(--primary-dark); }
+  .week-day-info { font-size: 11px; color: var(--text-soft); }
+  .week-day-blocks { display: none; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-soft); }
+  .week-day.expanded .week-day-blocks { display: block; }
+  .week-mini { display: flex; gap: 10px; padding: 5px 0; font-size: 12px; }
+  .week-mini .t { color: var(--primary); font-weight: 500; min-width: 42px; }
+  .week-mini .n { color: var(--text); flex: 1; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(58, 48, 53, 0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; animation: overlayIn 0.3s; }
+  .modal-overlay.show { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal { background: var(--surface); border-radius: 24px; padding: 30px 22px; max-width: 360px; width: 100%; text-align: center; box-shadow: 0 12px 48px rgba(58, 48, 53, 0.2); animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.85) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  .modal::before, .modal::after { content: ''; position: absolute; border-radius: 50%; }
+  .modal::before { top: -40px; right: -40px; width: 120px; height: 120px; background: var(--primary-light); opacity: 0.5; }
+  .modal::after { bottom: -40px; left: -40px; width: 100px; height: 100px; background: var(--accent-light); opacity: 0.5; }
+  .modal > * { position: relative; z-index: 1; }
+  .modal .gift { width: 70px; height: 70px; margin: 0 auto 16px; background: linear-gradient(135deg, var(--gold) 0%, var(--primary) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: bounce 1s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .modal h2 { font-size: 22px; font-weight: 400; color: var(--primary-dark); margin-bottom: 10px; font-family: var(--font-display); font-style: italic; letter-spacing: -0.02em; }
+  .modal p { color: var(--text); line-height: 1.65; margin-bottom: 20px; font-size: 14px; }
+  .modal .ornament { font-size: 10px; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-weight: 600; }
+  .modal-close { background: var(--primary); color: white; border: none; border-radius: 14px; padding: 12px 32px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: transform 0.1s; }
+  .modal-close:active { transform: scale(0.97); }
+  .modal-skip { background: transparent; border: 1px solid var(--border); color: var(--text-soft); border-radius: 12px; padding: 10px 24px; font-size: 13px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+  .modal-skip:hover { border-color: var(--primary); color: var(--primary); }
+  .close-day-btn { width: 100%; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, var(--sage) 0%, var(--accent) 100%); color: white; border: none; border-radius: 14px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; box-shadow: 0 4px 12px rgba(122, 171, 124, 0.2); }
+  .close-day-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(122, 171, 124, 0.3); }
+  .close-day-btn:active { transform: scale(0.98); }
+  .screen-time-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow-card); margin-bottom: 8px; }
+  .screen-time-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .screen-time-auto { background: var(--accent-light); border-radius: 10px; padding: 10px 14px; flex: 1; }
+  .screen-time-auto .st-label { font-size: 10px; color: var(--accent-dark); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
+  .screen-time-auto .st-val { font-size: 22px; font-weight: 400; color: var(--accent-dark); font-family: var(--font-display); font-style: italic; }
+  .screen-time-manual { flex: 1; }
+  .screen-time-manual label { font-size: 10px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; font-weight: 500; }
+  .screen-time-input-wrap { display: flex; align-items: center; gap: 6px; background: var(--rose-light); border-radius: 10px; padding: 10px 14px; }
+  .screen-time-input-wrap input { border: none; background: transparent; font-size: 22px; font-family: var(--font-display); font-style: italic; font-weight: 400; color: #B85959; width: 60px; outline: none; }
+  .screen-time-input-wrap span { font-size: 12px; color: var(--rose); font-weight: 500; }
+  .screen-time-hint { font-size: 11px; color: var(--text-soft); line-height: 1.5; font-style: italic; }
+  .settings-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow-card); margin-bottom: 10px; }
+  .settings-card h4 { font-size: 13px; font-weight: 500; color: var(--primary-dark); margin-bottom: 4px; }
+  .settings-card p { font-size: 12px; color: var(--text-soft); margin-bottom: 10px; line-height: 1.5; }
+  .settings-card button { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 14px; border-radius: 10px; font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+  .settings-card button:hover { border-color: var(--primary); color: var(--primary); }
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .greeting .name { font-size: 18px; }
+    .block-time { min-width: 38px; font-size: 11px; }
+    .tab { font-size: 11px; padding: 9px 5px; }
+  }
+</style>
+</head>
+<body>
+<div id="setup" class="app">
+  <div class="setup-screen">
+    <div class="ornament">۞</div>
+    <h1>Hoş geldin</h1>
+    <p>Programına başlamadan önce, ismini söyle.</p>
+    <input type="text" id="nameInput" placeholder="İsmin..." maxlength="20" value="Hatice">
+    <button onclick="completeSetup()">Başlayalım</button>
+  </div>
+</div>
+<div id="app" class="app" style="display:none;">
+  <div class="header">
+    <div class="greeting">
+      <div class="salam">Selâmün aleyküm</div>
+      <div class="name" id="userName"></div>
+    </div>
+    <div class="date-pill">
+      <div class="day" id="dayName"></div>
+      <div class="date" id="dateStr"></div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-view="today" onclick="showView('today', this)">Bugün</button>
+    <button class="tab" data-view="learn" onclick="showView('learn', this)">Öğren</button>
+    <button class="tab" data-view="sport" onclick="showView('sport', this)">Spor</button>
+    <button class="tab" data-view="write" onclick="showView('write', this)">Yaz</button>
+    <button class="tab" data-view="week" onclick="showView('week', this)">Hafta</button>
+    <button class="tab" data-view="settings" onclick="showView('settings', this)">⚙</button>
+  </div>
+  <div id="view-today" class="view active">
+    <div class="stats">
+      <div class="stat-card streak">
+        <div class="label">Zincirim</div>
+        <div><span class="number" id="streakNum">0</span><span class="unit">gün</span></div>
+        <div class="chain" id="streakChain"></div>
+      </div>
+      <div class="stat-card progress">
+        <div class="label">Bugün</div>
+        <div><span class="number" id="progressNum">0</span><span class="unit">%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      </div>
+      <div class="stat-card sport">
+        <div class="label">Spor seviyesi</div>
+        <div><span class="number" id="sportWeek">1</span><span class="unit">. hafta</span></div>
+      </div>
+      <div class="stat-card kuran">
+        <div class="label">Toplam Kuran sayfası</div>
+        <div><span class="number" id="totalPages">0</span><span class="unit">sayfa</span></div>
+      </div>
+    </div>
+    <div id="banner" class="banner"></div>
+    <div class="section-title">Bugünün programı</div>
+    <div class="blocks" id="blocksList"></div>
+    <div class="section-title">Bugünün Kuran takibi</div>
+    <div id="kuranTracker"></div>
+    <div class="section-title">Bugünün sporu</div>
+    <div id="sportToday"></div>
+    <div class="section-title">Akşam defteri — bugün başardığım</div>
+    <div class="journal-card">
+      <div class="journal-line">
+        <div class="journal-num">1</div>
+        <textarea class="journal-input" id="journal1" placeholder="Bugün başardığım küçük bir şey..." rows="1"></textarea>
+      </div>
+      <div class="journal-line">
+        <div class="journal-num">2</div>
+        <textarea class="journal-input" id="journal2" placeholder="Kendimi iyi hissettiğim bir an..." rows="1"></textarea>
+      </div>
+      <div class="journal-line">
+        <div class="journal-num">3</div>
+        <textarea class="journal-input" id="journal3" placeholder="Yarın için bir niyetim..." rows="1"></textarea>
+      </div>
+    </div>
+    <div class="section-title">Ekran süresi</div>
+    <div class="screen-time-card" id="screenTimeCard"></div>
+    <button class="close-day-btn" onclick="openReportModal()">
+      ✿ Bugünü kapat ve aileme gönder
+    </button>
+  </div>
+  <div id="view-learn" class="view">
+    <div class="section-title">Bugünün İngilizce cümleleri</div>
+    <div id="enWords"></div>
+    <div class="section-title">Bugünün Arapça cümleleri</div>
+    <div id="arWords"></div>
+    <div class="section-title">Kuran-ı Kerim'den dualar</div>
+    <div id="duasList"></div>
+    <div class="section-title">Bu haftanın kadın sahabesi</div>
+    <div id="sahabeCard"></div>
+    <div class="section-title">Bugünün eğitici izlemesi</div>
+    <div id="watchToday"></div>
+  </div>
+  <div id="view-sport" class="view">
+    <div class="section-title">Spor programım</div>
+    <div id="sportFull"></div>
+  </div>
+  <div id="view-write" class="view">
+    <div class="section-title">Yaratıcı yazı</div>
+    <div id="creativeWrite"></div>
+    <div class="section-title">Okuduğum kitap</div>
+    <div id="bookSection"></div>
+  </div>
+  <div id="view-week" class="view">
+    <div class="section-title">Haftalık görünüm</div>
+    <div id="weekList"></div>
+  </div>
+  <div id="view-settings" class="view">
+    <div class="section-title">Ayarlar</div>
+    <div class="settings-card">
+      <h4>İsmim</h4>
+      <p id="currentName"></p>
+      <button onclick="changeName()">İsmi değiştir</button>
+    </div>
+    <div class="settings-card">
+      <h4>Verilerimi yedekle</h4>
+      <p>Tüm ilerlemeyi bir dosyaya kaydet — telefon değişirse geri yükleyebilirsin.</p>
+      <button onclick="exportData()">Yedek al</button>
+    </div>
+    <div class="settings-card">
+      <h4>Yeniden başla</h4>
+      <p>Tüm verileri sıfırlar. Geri alınamaz.</p>
+      <button onclick="resetAll()">Sıfırla</button>
+    </div>
+    <div class="settings-card">
+      <h4>Hakkında</h4>
+      <p>Bu program baban tarafından senin için, seninle birlikte hazırlandı. ✿</p>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="gift">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 12 20 22 4 22 4 12"></polyline>
+        <rect x="2" y="7" width="20" height="5"></rect>
+        <line x1="12" y1="22" x2="12" y2="7"></line>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+      </svg>
+    </div>
+    <div class="ornament" id="modalOrnament">Tebrikler</div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalMessage"></p>
+    <button class="modal-close" onclick="closeModal()">Devam et</button>
+  </div>
+</div>
+<div class="modal-overlay" id="reportOverlay">
+  <div class="modal">
+    <div class="gift" style="background: linear-gradient(135deg, var(--sage) 0%, var(--accent) 100%);">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </div>
+    <div class="ornament">Bugün için emek verdin</div>
+    <h2>Aileye gönder?</h2>
+    <p>Anne ve baban senin gününü merak ediyor. Raporun hazır — onlara göndermek ister misin?</p>
+    <button class="modal-close" onclick="openMailto()" style="margin-bottom: 10px; width: 100%;">✿ Aileye gönder</button>
+    <button class="modal-skip" onclick="skipReport()">Şimdi olmasın</button>
+  </div>
+</div>
+<script>
+const STORAGE_KEY = 'programim_hatice_v2';
+const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+const ICONS = { fajr: '◐', kuran: '۞', sleep: '☾', breakfast: '◷', school: '✦', return: '◔', rest: '◑', english: 'E', creative: '✎', physical: '✧', practical: '◈', recording: '▶', hifz: '۩', free: '◌', reflect: '✿', dinner: '◓', read: '☆', maghrib: '◐', isha: '☽', sleep_night: '☾', arabic: 'ع', friday: '۞', specialist: '◈', family: '♡', saturday: '✿', review: '◉', drama: '▷', prayer: '☪', dhuhr: '◐', asr: '◑', watch: '▷', write: '✎', book: '☆', sport: '✧', words: '✦', sahabe: '✿' };
+const ENGLISH_SENTENCES = [
+  // Sabah & ev
+  { en: "Good morning, mom. Did you sleep well?", tr: "Günaydın anne. İyi uyudun mu?", context: "Sabah anneni selamlarken" },
+  { en: "I'll be ready in five minutes.", tr: "Beş dakika içinde hazır olurum.", context: "Acele ettiklerinde" },
+  { en: "Where are my keys? I can't find them.", tr: "Anahtarlarım nerede? Bulamıyorum.", context: "Bir şey ararken" },
+  { en: "Can you pass me the salt, please?", tr: "Tuzu uzatır mısın lütfen?", context: "Sofrada birinden bir şey isterken" },
+  { en: "Thank you, that's so kind of you.", tr: "Teşekkürler, çok naziksin.", context: "Birine teşekkür ederken" },
+  // Bakkal, fırın, çarşı
+  { en: "How much is this, please?", tr: "Bu ne kadar lütfen?", context: "Dükkanda fiyat sorarken" },
+  { en: "Do you have fresh bread?", tr: "Taze ekmeğiniz var mı?", context: "Fırında" },
+  { en: "I'd like two of these, please.", tr: "Bunlardan iki tane alabilir miyim?", context: "Bakkalda sipariş ederken" },
+  { en: "Can I pay by card?", tr: "Kartla ödeyebilir miyim?", context: "Kasada" },
+  { en: "Excuse me, where is the dairy section?", tr: "Affedersiniz, süt ürünleri reyonu nerede?", context: "Markette yön sorarken" },
+  // Yolda, taksi, otobüs
+  { en: "Excuse me, is this the right way to the mosque?", tr: "Affedersiniz, camiye doğru yol bu mu?", context: "Yön sorarken" },
+  { en: "Can you slow down a little, please?", tr: "Biraz yavaşlar mısınız lütfen?", context: "Şoföre hız konusunda" },
+  { en: "I'd like to get off at the next stop.", tr: "Bir sonraki durakta inmek istiyorum.", context: "Otobüste/takside" },
+  { en: "Is it far from here?", tr: "Buradan uzak mı?", context: "Mesafe sorarken" },
+  { en: "I'll be there in fifteen minutes.", tr: "On beş dakika içinde orada olurum.", context: "Birini ararken" },
+  // Arkadaş ile
+  { en: "How was your day today?", tr: "Bugünün nasıl geçti?", context: "Arkadaşına" },
+  { en: "I really enjoyed that.", tr: "Bunu gerçekten çok beğendim.", context: "Bir şeyden hoşlandığında" },
+  { en: "Let's meet at four o'clock.", tr: "Saat dörtte buluşalım.", context: "Plan yaparken" },
+  { en: "I'm sorry I'm late.", tr: "Geç kaldığım için özür dilerim.", context: "Geç kalınca" },
+  { en: "Don't worry about it.", tr: "Boşver, dert etme.", context: "Birini rahatlatırken" },
+  // Kardeşler & aile içi
+  { en: "Stop bothering me, please.", tr: "Lütfen beni rahatsız etme.", context: "Kardeşine" },
+  { en: "Can I borrow your charger?", tr: "Şarj aletini alabilir miyim?", context: "Ev içi rica" },
+  { en: "Did you finish your homework?", tr: "Ödevini bitirdin mi?", context: "Küçük kardeşine" },
+  { en: "I'll help you in a minute.", tr: "Bir dakika içinde yardım ederim.", context: "Birinin işi varken" },
+  { en: "Mom is calling you.", tr: "Annem seni çağırıyor.", context: "Eve haber" },
+  // Duygu ifade
+  { en: "I feel a bit tired today.", tr: "Bugün biraz yorgun hissediyorum.", context: "Kendini ifade ederken" },
+  { en: "I'm really happy about that.", tr: "Buna çok seviniyorum.", context: "Mutluluğunu ifade ederken" },
+  { en: "I don't feel well, can I rest?", tr: "İyi hissetmiyorum, dinlenebilir miyim?", context: "Annene anlatırken" },
+  { en: "I'm a little nervous.", tr: "Biraz heyecanlıyım.", context: "Sınav, yeni şey öncesi" },
+  { en: "I really miss them.", tr: "Onları gerçekten özledim.", context: "Birini özlerken" },
+  // Anlamadığında, yardım istediğinde
+  { en: "Could you repeat that, please?", tr: "Tekrar eder misiniz lütfen?", context: "Anlamadığında" },
+  { en: "I don't understand. Can you explain?", tr: "Anlamadım. Açıklar mısın?", context: "Hocadan / arkadaştan" },
+  { en: "Could you write it down for me?", tr: "Benim için yazar mısınız?", context: "Bilgi alırken" },
+  { en: "Sorry, I don't speak much English.", tr: "Üzgünüm, çok fazla İngilizce konuşmuyorum.", context: "Turistle karşılaşınca" },
+  { en: "Can you speak more slowly?", tr: "Biraz daha yavaş konuşur musunuz?", context: "Hızlı konuşan biri" },
+  // Selamlaşma & vedalaşma
+  { en: "Have a nice day!", tr: "İyi günler!", context: "Birinden ayrılırken" },
+  { en: "See you tomorrow.", tr: "Yarın görüşürüz.", context: "Vedalaşırken" },
+  { en: "Take care of yourself.", tr: "Kendine iyi bak.", context: "Sevdiğine veda" },
+  { en: "Send my regards to your mother.", tr: "Annene selamımı söyle.", context: "Vedalaşırken nezaket" },
+  { en: "Welcome! Please come in.", tr: "Hoş geldiniz! Lütfen girin.", context: "Eve misafir gelince" },
+  // Restoran, kafe
+  { en: "I'd like a glass of water, please.", tr: "Bir bardak su alabilir miyim lütfen?", context: "Kafede" },
+  { en: "Could we have the menu?", tr: "Menüyü alabilir miyiz?", context: "Restoranda" },
+  { en: "This is delicious, thank you.", tr: "Çok lezzetli, teşekkür ederim.", context: "Yemek beğendiğinde" },
+  { en: "Can we get the bill, please?", tr: "Hesabı alabilir miyiz lütfen?", context: "Çıkarken" },
+  { en: "I'm full, thank you.", tr: "Doydum, teşekkürler.", context: "Yemekte" },
+  // İslami günlük
+  { en: "It's time for prayer.", tr: "Namaz vakti geldi.", context: "Aileye hatırlatma" },
+  { en: "I'll pray and come back.", tr: "Namazımı kılıp geleceğim.", context: "Birini bilgilendirme" },
+  { en: "Have you read your Quran today?", tr: "Bugün Kuran okudun mu?", context: "Yumuşak bir hatırlatma" },
+  { en: "Inshallah, we'll meet tomorrow.", tr: "İnşallah yarın görüşürüz.", context: "Plan kapatırken" },
+  { en: "May Allah bless you.", tr: "Allah seni mübarek etsin.", context: "Birine teşekkür sonrası" },
+  // Sınıfta, kursta
+  { en: "May I ask a question?", tr: "Bir soru sorabilir miyim?", context: "Hocaya" },
+  { en: "Could you help me with this?", tr: "Bunda bana yardım eder misiniz?", context: "Anlamadığın bir konuda" },
+  { en: "I think I understand now.", tr: "Sanırım şimdi anladım.", context: "Bir şey anlaşılınca" },
+  { en: "Can I borrow your pencil?", tr: "Kalemini ödünç alabilir miyim?", context: "Sınıf arkadaşına" },
+  { en: "What page are we on?", tr: "Hangi sayfadayız?", context: "Derste kayıp olunca" },
+  // Telefon / mesaj
+  { en: "I'll call you back later.", tr: "Seni sonra ararım.", context: "Telefonda" },
+  { en: "Can you hear me well?", tr: "Beni iyi duyuyor musun?", context: "Telefon görüşmesinde" },
+  { en: "Send me a message when you arrive.", tr: "Vardığında bana mesaj at.", context: "Birini gönderirken" },
+  { en: "I'll be home soon.", tr: "Yakında evde olacağım.", context: "Ailene haber" },
+  { en: "Did you get my message?", tr: "Mesajımı aldın mı?", context: "İletişim kontrolü" }
+];
+
+const ARABIC_SENTENCES = [
+  // Sabah & ev
+  { ar: "صَبَاحَ الخَيْر يَا أُمِّي. كَيْفَ نِمْتِ؟", latin: "Sabâh el-hayr yâ ümmî. Keyfe nimti?", tr: "Günaydın anne. Nasıl uyudun?", context: "Sabah anneni selamlarken" },
+  { ar: "سَأَكُونُ جَاهِزَة بَعْدَ خَمْس دَقَائِق", latin: "Se-ekûnü câhize ba'de hams dekâik.", tr: "Beş dakika sonra hazır olurum.", context: "Acele ettiklerinde" },
+  { ar: "أَيْنَ مِفْتَاحِي؟ لَا أَجِدُهُ", latin: "Eyne miftâhî? Lâ ecidühü.", tr: "Anahtarım nerede? Bulamıyorum.", context: "Bir şey ararken" },
+  { ar: "هَلْ يُمْكِنُكِ أَنْ تُنَاوِلِينِي المِلْح، مِنْ فَضْلِكِ؟", latin: "Hel yümkinüki en tünâvilînî el-milh, min fadlik?", tr: "Tuzu uzatır mısın lütfen?", context: "Sofrada birinden bir şey isterken" },
+  { ar: "شُكْرًا، أَنْتِ لَطِيفَة جِدًّا", latin: "Şükran, enti latîfe ciddân.", tr: "Teşekkürler, çok naziksin.", context: "Birine teşekkür ederken" },
+  // Bakkal, fırın, çarşı (Levant/Mısır lehçesi karışık)
+  { ar: "بِكَمْ هَذَا، مِنْ فَضْلِكَ؟", latin: "Bi-kem hâzâ, min fadlike?", tr: "Bu ne kadar lütfen?", context: "Dükkanda fiyat sorarken" },
+  { ar: "هَلْ عِنْدَكُمْ خُبْز طَازَج؟", latin: "Hel indeküm hubz tâzec?", tr: "Taze ekmeğiniz var mı?", context: "Fırında" },
+  { ar: "أُرِيدُ اِثْنَيْنِ مِنْ هَذَا، لَوْ سَمَحْت", latin: "Urîdü isneyn min hâzâ, lev semaht.", tr: "Bunlardan iki tane alabilir miyim?", context: "Bakkalda sipariş ederken" },
+  { ar: "هَلْ يُمْكِنُ الدَّفْع بِالبِطَاقَة؟", latin: "Hel yümkinü ed-def' bi'l-bitâka?", tr: "Kartla ödeyebilir miyim?", context: "Kasada" },
+  { ar: "عَفْوًا، أَيْنَ قِسْم الأَلْبَان؟", latin: "Afven, eyne kısm el-elbân?", tr: "Affedersiniz, süt ürünleri reyonu nerede?", context: "Markette yön sorarken" },
+  // Yolda, taksi, otobüs
+  { ar: "عَفْوًا، هَلْ هَذَا الطَّرِيق إِلَى المَسْجِد؟", latin: "Afven, hel hâzâ et-tarîk ile'l-mescid?", tr: "Affedersiniz, camiye doğru yol bu mu?", context: "Yön sorarken" },
+  { ar: "هَلْ يُمْكِنُكَ التَّبْطِئَة قَلِيلًا، مِنْ فَضْلِكَ؟", latin: "Hel yümkinüke et-tebti'a kalîlen, min fadlike?", tr: "Biraz yavaşlar mısınız?", context: "Şoföre" },
+  { ar: "أُرِيدُ النُّزُول فِي المَحَطَّة القَادِمَة", latin: "Urîdü en-nüzûl fi'l-mahatta el-kâdime.", tr: "Bir sonraki durakta inmek istiyorum.", context: "Otobüste" },
+  { ar: "هَلْ هُوَ بَعِيد مِنْ هُنَا؟", latin: "Hel hüve baîd min hünâ?", tr: "Buradan uzak mı?", context: "Mesafe sorarken" },
+  { ar: "سَأَصِل بَعْدَ خَمْسَة عَشَرَ دَقِيقَة", latin: "Se-esıl ba'de hamsete aşera dekîka.", tr: "On beş dakika içinde varırım.", context: "Birini ararken" },
+  // Arkadaş ile
+  { ar: "كَيْفَ كَانَ يَوْمُكِ اليَوْم؟", latin: "Keyfe kâne yevmüki el-yevm?", tr: "Bugünün nasıl geçti?", context: "Arkadaşına" },
+  { ar: "أَعْجَبَنِي هَذَا كَثِيرًا", latin: "A'cebenî hâzâ kesîran.", tr: "Bunu çok beğendim.", context: "Bir şeyden hoşlandığında" },
+  { ar: "لِنَلْتَقِي السَّاعَة الرَّابِعَة", latin: "Li-neltekıye es-sâa er-râbia.", tr: "Saat dörtte buluşalım.", context: "Plan yaparken" },
+  { ar: "آسِفَة عَلَى التَّأَخُّر", latin: "Âsife ale't-teahhur.", tr: "Geç kaldığım için özür dilerim.", context: "Geç kalınca" },
+  { ar: "لَا تَقْلَقِي، لَا بَأْس", latin: "Lâ tekleki, lâ be's.", tr: "Endişelenme, sorun değil.", context: "Birini rahatlatırken" },
+  // Kardeşler & aile içi
+  { ar: "لَا تُزْعِجِينِي، مِنْ فَضْلِكِ", latin: "Lâ tüz'icînî, min fadliki.", tr: "Lütfen beni rahatsız etme.", context: "Kardeşine" },
+  { ar: "هَلْ يُمْكِنُنِي اِسْتِعَارَة شَاحِنِكَ؟", latin: "Hel yümkinunî isti'âre şâhınike?", tr: "Şarj aletini alabilir miyim?", context: "Ev içi rica" },
+  { ar: "هَلْ أَنْهَيْتَ وَاجِبَكَ؟", latin: "Hel enheyte vâcibeke?", tr: "Ödevini bitirdin mi?", context: "Küçük kardeşine" },
+  { ar: "سَأُسَاعِدُكَ بَعْدَ دَقِيقَة", latin: "Se-üsâidüke ba'de dekîka.", tr: "Bir dakika sonra yardım ederim.", context: "Birinin işi varken" },
+  { ar: "أُمِّي تُنَادِيكَ", latin: "Ümmî tünâdîke.", tr: "Annem seni çağırıyor.", context: "Eve haber" },
+  // Duygu ifade
+  { ar: "أَشْعُرُ بِالتَّعَب اليَوْم", latin: "Eş'urü bi't-teab el-yevm.", tr: "Bugün yorgun hissediyorum.", context: "Kendini ifade ederken" },
+  { ar: "أَنَا سَعِيدَة جِدًّا بِهَذَا", latin: "Enâ saîde ciddân bi-hâzâ.", tr: "Buna çok seviniyorum.", context: "Mutluluğunu ifade ederken" },
+  { ar: "لَا أَشْعُرُ بِخَيْر، هَلْ يُمْكِنُنِي الرَّاحَة؟", latin: "Lâ eş'urü bi-hayr, hel yümkinunî er-râha?", tr: "İyi hissetmiyorum, dinlenebilir miyim?", context: "Annene anlatırken" },
+  { ar: "أَنَا مُتَوَتِّرَة قَلِيلًا", latin: "Enâ mütevettire kalîlen.", tr: "Biraz heyecanlıyım.", context: "Sınav, yeni şey öncesi" },
+  { ar: "اِشْتَقْتُ إِلَيْهِم كَثِيرًا", latin: "İştektü ileyhim kesîran.", tr: "Onları çok özledim.", context: "Birini özlerken" },
+  // Anlamadığında
+  { ar: "مِنْ فَضْلِكَ، أَعِدْ مَا قُلْت", latin: "Min fadlike, e'id mâ kult.", tr: "Lütfen söylediğini tekrar et.", context: "Anlamadığında" },
+  { ar: "لَمْ أَفْهَم. هَلْ يُمْكِنُكَ التَّوْضِيح؟", latin: "Lem efhem. Hel yümkinüke et-tevdîh?", tr: "Anlamadım. Açıklar mısın?", context: "Hocadan" },
+  { ar: "هَلْ يُمْكِنُكَ كِتَابَتُهُ لِي؟", latin: "Hel yümkinüke kitâbetühü lî?", tr: "Benim için yazar mısın?", context: "Bilgi alırken" },
+  { ar: "آسِفَة، عَرَبِيَّتِي قَلِيلَة", latin: "Âsife, arabiyyetî kalîle.", tr: "Üzgünüm, Arapçam az.", context: "Konuşurken" },
+  { ar: "هَلْ يُمْكِنُكَ التَّكَلُّم بِبُطْء؟", latin: "Hel yümkinüke et-tekellüm bi-bütü'?", tr: "Yavaş konuşur musun?", context: "Hızlı konuşan biri" },
+  // Selamlaşma & vedalaşma
+  { ar: "أَتَمَنَّى لَكِ يَوْمًا سَعِيدًا", latin: "Etemennâ leki yevmen saîden.", tr: "İyi günler dilerim.", context: "Birinden ayrılırken" },
+  { ar: "أَرَاكِ غَدًا إِنْ شَاءَ الله", latin: "Erâki ğaden inşâallah.", tr: "İnşallah yarın görüşürüz.", context: "Vedalaşırken" },
+  { ar: "اِعْتَنِي بِنَفْسِكِ", latin: "İ'tenî bi-nefsiki.", tr: "Kendine iyi bak.", context: "Sevdiğine veda" },
+  { ar: "سَلِّمِي عَلَى أُمِّكِ", latin: "Sellimî alâ ümmiki.", tr: "Annene selam söyle.", context: "Vedalaşırken" },
+  { ar: "أَهْلًا وَسَهْلًا، تَفَضَّلِي", latin: "Ehlen ve sehlen, tefaddalî.", tr: "Hoş geldin, buyur.", context: "Eve misafir gelince" },
+  // Restoran, kafe
+  { ar: "أُرِيدُ كُوب مَاء، مِنْ فَضْلِكَ", latin: "Urîdü kûb mâ', min fadlike.", tr: "Bir bardak su alabilir miyim?", context: "Kafede" },
+  { ar: "مِنْ فَضْلِكَ، أَعْطِنَا قَائِمَة الطَّعَام", latin: "Min fadlike, a'tınâ kâimet et-taâm.", tr: "Lütfen menüyü verir misiniz?", context: "Restoranda" },
+  { ar: "هَذَا لَذِيذ، شُكْرًا", latin: "Hâzâ lezîz, şükran.", tr: "Bu çok lezzetli, teşekkür ederim.", context: "Yemek beğendiğinde" },
+  { ar: "الحِسَاب مِنْ فَضْلِكَ", latin: "El-hisâb min fadlike.", tr: "Hesap lütfen.", context: "Çıkarken" },
+  { ar: "شَبِعْتُ، شُكْرًا", latin: "Şebi'tü, şükran.", tr: "Doydum, teşekkürler.", context: "Yemekte" },
+  // İslami günlük
+  { ar: "حَانَ وَقْت الصَّلَاة", latin: "Hâne vakt es-salât.", tr: "Namaz vakti geldi.", context: "Aileye hatırlatma" },
+  { ar: "سَأُصَلِّي وَأَعُود", latin: "Se-üsallî ve eûd.", tr: "Namazımı kılıp döneceğim.", context: "Birini bilgilendirme" },
+  { ar: "هَلْ قَرَأْتِ القُرْآن اليَوْم؟", latin: "Hel kara'ti el-kur'ân el-yevm?", tr: "Bugün Kuran okudun mu?", context: "Yumuşak bir hatırlatma" },
+  { ar: "إِنْ شَاءَ الله نَلْتَقِي غَدًا", latin: "İnşâallah neltekıye ğaden.", tr: "İnşallah yarın görüşürüz.", context: "Plan kapatırken" },
+  { ar: "بَارَكَ الله فِيكِ", latin: "Bârekallâhü fîki.", tr: "Allah seni mübarek etsin.", context: "Birine teşekkür" },
+  // Sınıfta, kursta
+  { ar: "هَلْ يُمْكِنُنِي طَرْح سُؤَال؟", latin: "Hel yümkinunî tarh süâl?", tr: "Bir soru sorabilir miyim?", context: "Hocaya" },
+  { ar: "هَلْ يُمْكِنُكَ مُسَاعَدَتِي فِي هَذَا؟", latin: "Hel yümkinüke müsâadetî fî hâzâ?", tr: "Bunda bana yardım eder misin?", context: "Anlamadığın konu" },
+  { ar: "أَعْتَقِدُ أَنِّي فَهِمْتُ الآن", latin: "A'tekıdü ennî fehimtü el-ân.", tr: "Sanırım şimdi anladım.", context: "Bir şey anlaşılınca" },
+  { ar: "هَلْ يُمْكِنُنِي اِسْتِعَارَة قَلَمِكِ؟", latin: "Hel yümkinunî isti'âre kalemiki?", tr: "Kalemini ödünç alabilir miyim?", context: "Sınıf arkadaşına" },
+  { ar: "فِي أَيِّ صَفْحَة نَحْنُ؟", latin: "Fî eyyi sahfe nahnü?", tr: "Hangi sayfadayız?", context: "Derste" },
+  // Telefon / mesaj
+  { ar: "سَأَتَّصِلُ بِكِ لَاحِقًا", latin: "Se-ettesılü biki lâhıkan.", tr: "Seni sonra arayacağım.", context: "Telefonda" },
+  { ar: "هَلْ تَسْمَعِينِي جَيِّدًا؟", latin: "Hel tesmaînî ceyyiden?", tr: "Beni iyi duyuyor musun?", context: "Telefon görüşmesinde" },
+  { ar: "اِبْعَثِي لِي رِسَالَة عِنْدَ وُصُولِكِ", latin: "İb'asî lî risâle inde vusûliki.", tr: "Vardığında bana mesaj at.", context: "Birini gönderirken" },
+  { ar: "سَأَكُونُ فِي البَيْت قَرِيبًا", latin: "Se-ekûnü fi'l-beyt karîben.", tr: "Yakında evde olacağım.", context: "Ailene haber" },
+  { ar: "هَلْ وَصَلَتْكِ رِسَالَتِي؟", latin: "Hel vasaletki risâletî?", tr: "Mesajım sana ulaştı mı?", context: "İletişim kontrolü" }
+];
+
+const KURAN_DUALARI = [
+  { peygamber: 'Hz. Âdem (a.s)', kategori: 'Tevbe duası', sure: 'A\'râf, 23', arabic: 'رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ', latin: 'Rabbenâ zalemnâ enfüsenâ ve in lem tağfir lenâ ve terhamnâ lenekûnenne mine\'l-hâsirîn.', meaning: 'Rabbimiz! Biz kendimize zulmettik. Eğer bizi bağışlamaz ve bize merhamet etmezsen, mutlaka ziyan edenlerden oluruz.', aciklama: 'Hz. Âdem ile Hz. Havva\'nın tevbe duası. Hata ettiğimizde nasıl Rabbe yönelmemiz gerektiğini öğretir.' },
+  { peygamber: 'Hz. Nûh (a.s)', kategori: 'Aile için dua', sure: 'Nûh, 28', arabic: 'رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَلِمَن دَخَلَ بَيْتِيَ مُؤْمِنًا وَلِلْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ', latin: 'Rabbi\'ğfir lî ve li-vâlideyye ve li-men dehale beytiye mü\'minen ve li\'l-mü\'minîne ve\'l-mü\'minât.', meaning: 'Rabbim! Beni, anne babamı, evime mümin olarak gireni ve bütün inanan erkek ve kadınları bağışla.', aciklama: 'Kendisi için olduğu kadar ailesi ve tüm müminler için de dua etmenin önemini öğretir.' },
+  { peygamber: 'Hz. İbrâhîm (a.s)', kategori: 'Hikmet duası', sure: 'Şuarâ, 83-85', arabic: 'رَبِّ هَبْ لِي حُكْمًا وَأَلْحِقْنِي بِالصَّالِحِينَ وَاجْعَل لِّي لِسَانَ صِدْقٍ فِي الْآخِرِينَ وَاجْعَلْنِي مِن وَرَثَةِ جَنَّةِ النَّعِيمِ', latin: 'Rabbi heb lî hukmen ve elhıknî bi\'s-sâlihîn. Vec\'al lî lisâne sıdkın fi\'l-âhırîn. Vec\'alnî min veraseti cenneti\'n-naîm.', meaning: 'Rabbim! Bana hikmet ver ve beni iyiler arasına kat. Bana sonra gelecekler içinde iyilikle anılmak nasip eyle. Beni Naîm cennetinin vârislerinden kıl.', aciklama: 'Hz. İbrahim\'in bu duası kabul olmuş, kıyamete kadar hayırla anılmıştır.' },
+  { peygamber: 'Hz. İbrâhîm + İsmâîl', kategori: 'Kabul duası', sure: 'Bakara, 127-128', arabic: 'رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ رَبَّنَا وَاجْعَلْنَا مُسْلِمَيْنِ لَكَ وَمِن ذُرِّيَّتِنَا أُمَّةً مُّسْلِمَةً لَّكَ', latin: 'Rabbenâ tekabbel minnâ inneke ente\'s-semîu\'l-alîm. Rabbenâ vec\'alnâ müslimeyni leke ve min zürriyyetinâ ümmeten müslimeten lek.', meaning: 'Rabbimiz! Bizden kabul buyur; şüphesiz sen işitensin, bilensin. Rabbimiz! Bizi sana boyun eğenlerden kıl, neslimizden de sana itaat eden bir ümmet çıkar.', aciklama: 'Baba-oğul Kâbe\'yi inşa ederken okudukları dua. Soyumuzun da iyi yetişmesi için dua etmenin örneği.' },
+  { peygamber: 'Hz. Yûsuf (a.s)', kategori: 'Müslüman ölmek', sure: 'Yûsuf, 101', arabic: 'فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ أَنتَ وَلِيِّي فِي الدُّنْيَا وَالْآخِرَةِ تَوَفَّنِي مُسْلِمًا وَأَلْحِقْنِي بِالصَّالِحِينَ', latin: 'Fâtıra\'s-semâvâti ve\'l-ardı, ente veliyyî fi\'d-dünyâ ve\'l-âhırah. Teveffenî müslimen ve elhıknî bi\'s-sâlihîn.', meaning: 'Ey gökleri ve yeri yaratan! Sen dünyada da ahirette de benim sahibimsin. Beni müslüman olarak öldür ve beni sâlihler arasına kat!', aciklama: 'Hz. Yusuf büyük imtihanlardan sonra yaptığı tek istek: müslüman olarak ölmek.' },
+  { peygamber: 'Hz. Mûsâ (a.s)', kategori: 'Cesaret duası', sure: 'Tâhâ, 25-28', arabic: 'رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِّن لِّسَانِي يَفْقَهُوا قَوْلِي', latin: 'Rabbi\'şrah lî sadrî ve yessir lî emrî va\'hlul ukdeten min lisânî yefkahû kavlî.', meaning: 'Rabbim! Göğsümü genişlet, işimi kolaylaştır, dilimdeki düğümü çöz ki sözümü iyi anlasınlar.', aciklama: 'Hz. Musa Firavun\'a gitmeden önce okudu. Korktuğunda, zor bir iş yapacaksan, bir sınava çıkacaksan — bu duayı oku.' },
+  { peygamber: 'Hz. Eyyûb (a.s)', kategori: 'Şifa duası', sure: 'Enbiyâ, 83', arabic: 'أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ', latin: 'Ennî messeniye\'d-durru ve ente erhamü\'r-râhımîn.', meaning: 'Bana gerçekten zarar dokundu. Sen merhametlilerin en merhametlisisin.', aciklama: 'Hz. Eyyûb yıllarca hastalık çekti ama Allah\'a şikayet etmedi. Sıkıntıda kalanlara şifa duasıdır.' },
+  { peygamber: 'Hz. Yûnus (a.s)', kategori: 'Sıkıntı duası', sure: 'Enbiyâ, 87', arabic: 'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ', latin: 'Lâ ilâhe illâ ente sübhâneke innî küntü mine\'z-zâlimîn.', meaning: 'Senden başka ilah yoktur. Seni tenzih ederim. Gerçekten ben zalimlerden oldum.', aciklama: 'Hz. Yunus balığın karnında bu duayı okudu, Allah onu kurtardı. Çaresiz kaldığında, karanlıkta hissettiğinde bu dua hayat kurtarır.' },
+  { peygamber: 'Hz. Zekeriyyâ (a.s)', kategori: 'Hayırlı evlat duası', sure: 'Âl-i İmrân, 38', arabic: 'رَبِّ هَبْ لِي مِن لَّدُنكَ ذُرِّيَّةً طَيِّبَةً إِنَّكَ سَمِيعُ الدُّعَاءِ', latin: 'Rabbi heb lî min ledünke zürriyyeten tayyibeh. İnneke semîu\'d-duâ.', meaning: 'Rabbim! Bana tarafından hayırlı bir nesil bağışla. Şüphesiz sen duayı hakkıyla işitensin.', aciklama: 'Yaşı ilerlemiş, eşi kısırdı. Ama umudunu kesmedi. Geç kalsa bile dua kabul olur.' },
+  { peygamber: 'Hz. Süleymân (a.s)', kategori: 'Şükür duası', sure: 'Neml, 19', arabic: 'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ', latin: 'Rabbi evzı\'nî en eşküra ni\'meteke\'lletî en\'amte aleyye ve alâ vâlideyye ve en a\'mele sâlihan terdâh.', meaning: 'Rabbim! Beni; bana ve anne-babama verdiğin nimete şükretmeye ve razı olacağın sâlih amel işlemeye muvaffak kıl.', aciklama: 'Dünyanın en büyük kralıydı ama dua ettiği şey: şükredebilmek. Zenginlik isteyen değil, kalbi temiz olmak isteyen bir lider.' },
+  { peygamber: 'Hz. Şu\'ayb (a.s)', kategori: 'Tevekkül duası', sure: 'A\'râf, 89', arabic: 'رَبَّنَا افْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِالْحَقِّ وَأَنتَ خَيْرُ الْفَاتِحِينَ', latin: 'Rabbenâ\'ftah beynenâ ve beyne kavmenâ bi\'l-hakkı ve ente hayru\'l-fâtihîn.', meaning: 'Rabbimiz! Bizimle kavmimiz arasında hak ile hükmet. Sen hükmedenlerin en hayırlısısın.', aciklama: 'Hz. Şu\'ayb adaletsizliğe karşı dua etti. Anlaşmazlık varsa bu duayı oku.' },
+  { peygamber: 'Hz. Lût (a.s)', kategori: 'Aile koruma', sure: 'Şuarâ, 169', arabic: 'رَبِّ نَجِّنِي وَأَهْلِي مِمَّا يَعْمَلُونَ', latin: 'Rabbi neccinî ve ehlî mimmâ ya\'melûn.', meaning: 'Rabbim! Beni ve ailemi onların yaptıklarından kurtar.', aciklama: 'Kötü çevreden ailesini korumak için duası. Çevre baskısına karşı sığınak.' },
+  { peygamber: 'Mü\'minler', kategori: 'En kapsamlı dua', sure: 'Bakara, 286', arabic: 'رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا', latin: 'Rabbenâ lâ tüâhıznâ in nesînâ ev ahta\'nâ. Rabbenâ ve lâ tahmil aleynâ ısran kemâ hameltehû ale\'llezîne min kablinâ. Rabbenâ ve lâ tühammilnâ mâ lâ tâkate lenâ bih. Va\'fü annâ va\'ğfir lenâ ve\'rhamnâ.', meaning: 'Rabbimiz! Unutur, ya da yanılırsak bizi sorumlu tutma. Bizden öncekilere yüklediğin gibi bize de ağır yük yükleme. Gücümüzün yetmediği şeyleri bize yükleme. Bizi affet, bağışla ve bize merhamet eyle.', aciklama: 'Bakara suresinin son ayeti — Hz. Peygamber\'in özellikle övdüğü duadır. Her gün okumaya değer.' },
+  { peygamber: 'Mü\'minler', kategori: 'Musibet duası', sure: 'Bakara, 156', arabic: 'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ', latin: 'İnnâ lillâhi ve innâ ileyhi râciûn.', meaning: 'Şüphesiz biz Allah\'a aitiz ve şüphesiz O\'na döneceğiz.', aciklama: 'Bir musibet, kayıp, üzücü haber duyduğunda okunan dua. Hz. Peygamber\'in övdüğü zikirlerdendir.' },
+  { peygamber: 'Mü\'minler', kategori: 'Yardım duası', sure: 'Âl-i İmrân, 173', arabic: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ', latin: 'Hasbünallâhü ve ni\'me\'l-vekîl.', meaning: 'Allah bize yeter. O ne güzel vekildir.', aciklama: 'Zorlukta, korkuda, hayatta tek başına hissettiğinde — bu kısa cümle kalbe sükûnet verir.' },
+  { peygamber: 'Akıl sahipleri', kategori: 'İman üzerinde sebat', sure: 'Âl-i İmrân, 8', arabic: 'رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً إِنَّكَ أَنتَ الْوَهَّابُ', latin: 'Rabbenâ lâ tüziğ kulûbenâ ba\'de iz hedeytenâ ve heb lenâ min ledünke rahmeh. İnneke ente\'l-vehhâb.', meaning: 'Rabbimiz! Bizi hidayete erdirdikten sonra kalplerimizi eğriltme. Bize katından rahmet bağışla. Şüphesiz sen çok bağışlayansın.', aciklama: 'İman zayıfladığında, şüpheye düştüğünde — kalbi sabit tutmak için bu duayı oku.' },
+  { peygamber: 'Akıl sahipleri', kategori: 'Cehennemden korunma', sure: 'Âl-i İmrân, 191-192', arabic: 'رَبَّنَا مَا خَلَقْتَ هَٰذَا بَاطِلًا سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ رَبَّنَا إِنَّكَ مَن تُدْخِلِ النَّارَ فَقَدْ أَخْزَيْتَهُ', latin: 'Rabbenâ mâ halakte hâzâ bâtılâ. Sübhâneke fekınâ azâbe\'n-nâr. Rabbenâ inneke men tüdhıli\'n-nâra fe-kad ahzeyteh.', meaning: 'Rabbimiz! Sen bunu boşuna yaratmadın. Seni tenzih ederiz. Bizi cehennem azabından koru. Rabbimiz! Sen kimi cehenneme atarsan onu rezil etmiş olursun.', aciklama: 'Aklını kullanan, evrene bakıp düşünenlerin duası. Gece saati yıldızlara baktığında oku.' },
+  { peygamber: 'Mü\'minler', kategori: 'Yardım duası', sure: 'Bakara, 250', arabic: 'رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ', latin: 'Rabbenâ efrığ aleynâ sabran ve sebbit akdâmenâ ve\'nsurnâ ale\'l-kavmi\'l-kâfirîn.', meaning: 'Rabbimiz! Üzerimize sabır yağdır, ayaklarımızı sağlam tut ve kâfir topluluğa karşı bize yardım et.', aciklama: 'Sınav, sıkıntı, mücadele zamanı — sabır ve metanet için dua.' },
+  { peygamber: 'Hz. İbrâhîm (a.s)', kategori: 'Anne-baba duası', sure: 'İbrahim, 40-41', arabic: 'رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ', latin: 'Rabbi\'c\'alnî mukîme\'s-salâti ve min zürriyyetî. Rabbenâ ve tekabbel duâ. Rabbene\'ğfir lî ve li-vâlideyye ve li\'l-mü\'minîne yevme yekûmü\'l-hisâb.', meaning: 'Rabbim! Beni ve neslimden gelenleri namazı dosdoğru kılanlardan eyle. Rabbimiz! Duamı kabul buyur. Rabbimiz! Hesap görüleceği gün, beni, anne-babamı ve müminleri bağışla.', aciklama: 'Hem kendisi için, hem soyu için, hem anne-babası için dua etmenin örneği.' },
+  { peygamber: 'Mü\'minler', kategori: 'Anne-baba duası', sure: 'İsra, 24', arabic: 'رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا', latin: 'Rabbi\'rhamhümâ kemâ rabbeyânî sağîrâ.', meaning: 'Rabbim! Onlar beni küçükken yetiştirdikleri gibi sen de onlara merhamet eyle.', aciklama: 'Anne-baba için en güzel dua. Kuran\'da onlara karşı sorumluluğun ifadesi.' },
+  { peygamber: 'Mü\'minler', kategori: 'Yolculuk duası', sure: 'İsra, 80', arabic: 'رَّبِّ أَدْخِلْنِي مُدْخَلَ صِدْقٍ وَأَخْرِجْنِي مُخْرَجَ صِدْقٍ وَاجْعَل لِّي مِن لَّدُنكَ سُلْطَانًا نَّصِيرًا', latin: 'Rabbi edhılnî müdhale sıdkın ve ahricnî muhrace sıdkın ve\'c\'al lî min ledünke sultânen nasîrâ.', meaning: 'Rabbim! Gireceğim yere doğrulukla girmemi sağla, çıkacağım yerden de doğrulukla çıkmamı sağla. Bana katından yardımcı bir kuvvet ver.', aciklama: 'Yola çıkarken, yeni bir işe başlarken, evden çıkarken oku. Hicret duasıdır.' },
+  { peygamber: 'Mü\'minler', kategori: 'Nazardan korunma', sure: 'Kalem, 51-52', arabic: 'وَإِن يَكَادُ الَّذِينَ كَفَرُوا لَيُزْلِقُونَكَ بِأَبْصَارِهِمْ لَمَّا سَمِعُوا الذِّكْرَ وَيَقُولُونَ إِنَّهُ لَمَجْنُونٌ وَمَا هُوَ إِلَّا ذِكْرٌ لِّلْعَالَمِينَ', latin: 'Ve in yekâdüllezîne keferû le-yüzlikûneke bi-ebsârihim lemmâ semîû\'z-zikra ve yekûlûne innehû le-mecnûn. Ve mâ hüve illâ zikrun li\'l-âlemîn.', meaning: 'Şüphesiz inkâr edenler Zikr\'i (Kuran\'ı) duydukları zaman neredeyse seni gözleriyle devirecekler. Hâlbuki o, âlemler için ancak bir öğüttür.', aciklama: 'Nazar değmesinden korunmak için okunur. Üzerinde başkasının kötü bakışını hissettiğinde.' },
+  { peygamber: 'Mü\'minler', kategori: 'Tevekkül duası', sure: 'Tevbe, 129', arabic: 'حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ', latin: 'Hasbiyallâhü lâ ilâhe illâ hû. Aleyhi tevekkeltü ve hüve Rabbü\'l-Arşi\'l-Azîm.', meaning: 'Allah bana yeter. O\'ndan başka ilah yoktur. Ben yalnızca O\'na güvenip dayandım. O, büyük Arş\'ın Rabbidir.', aciklama: 'Sabah ve akşam 7 kez okunması tavsiye edilen güçlü bir tevekkül duasıdır.' },
+  { peygamber: 'Mü\'minler', kategori: 'Eş ve evlat duası', sure: 'Furkan, 74', arabic: 'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا', latin: 'Rabbenâ heb lenâ min ezvâcinâ ve zürriyyâtinâ kurrate a\'yünin ve\'c\'alnâ li\'l-müttekîne imâmâ.', meaning: 'Rabbimiz! Eşlerimizi ve çocuklarımızı bize göz aydınlığı kıl ve bizi takva sahiplerine önder eyle.', aciklama: 'Hayırlı eş, hayırlı evlat ve hayırlı bir hayat için ilk dua.' },
+  { peygamber: 'Mü\'minler', kategori: 'Kardeşler için dua', sure: 'Haşr, 10', arabic: 'رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَانِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَانِ وَلَا تَجْعَلْ فِي قُلُوبِنَا غِلًّا لِّلَّذِينَ آمَنُوا رَبَّنَا إِنَّكَ رَءُوفٌ رَّحِيمٌ', latin: 'Rabbene\'ğfir lenâ ve li-ihvâninellezîne sebekûnâ bi\'l-îmâni ve lâ tec\'al fî kulûbinâ ğıllen li\'llezîne âmenû. Rabbenâ inneke raûfün rahîm.', meaning: 'Rabbimiz! Bizi ve bizden önce iman etmiş olan kardeşlerimizi bağışla. Kalplerimizde, iman edenlere karşı hiçbir kin bırakma. Rabbimiz! Şüphesiz sen çok şefkatli, çok merhametlisin.', aciklama: 'Kalbinde bir kin varsa, biriyle aran bozulduysa — bu duayı okuyarak başla.' },
+  { peygamber: 'Mü\'minler', kategori: 'Nur duası', sure: 'Tahrim, 8', arabic: 'رَبَّنَا أَتْمِمْ لَنَا نُورَنَا وَاغْفِرْ لَنَا إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ', latin: 'Rabbenâ etmim lenâ nûranâ ve\'ğfir lenâ. İnneke alâ külli şey\'in kadîr.', meaning: 'Rabbimiz! Nurumuzu bizim için tamamla, bizi bağışla. Şüphesiz senin her şeye gücün yeter.', aciklama: 'Cennetin yolunu aydınlatması için dua. Kalbinin nurla dolmasını isteyenin duası.' },
+  { peygamber: 'Mü\'minler', kategori: '40 yaş duası', sure: 'Ahkaf, 15', arabic: 'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ وَأَصْلِحْ لِي فِي ذُرِّيَّتِي', latin: 'Rabbi evzı\'nî en eşküra ni\'meteke\'lletî en\'amte aleyye ve alâ vâlideyye ve en a\'mele sâlihan terdâhü ve aslıh lî fî zürriyyetî.', meaning: 'Rabbim! Bana ve anne-babama verdiğin nimete şükretmeye ve razı olacağın sâlih amel işlemeye muvaffak kıl. Soyumu da bana bağışla.', aciklama: 'Olgunluk yaşında okunan dua — şükür, sâlih amel, hayırlı evlat.' },
+  { peygamber: 'Hz. Yûsuf (a.s)', kategori: 'Sığınma duası', sure: 'Yûsuf, 33', arabic: 'رَبِّ السِّجْنُ أَحَبُّ إِلَيَّ مِمَّا يَدْعُونَنِي إِلَيْهِ', latin: 'Rabbi\'s-sicnü ehabbü ileyye mimmâ yed\'ûnenî ileyh.', meaning: 'Rabbim! Zindan bana, bunların beni davet ettiği şeyden daha sevimlidir.', aciklama: 'Hz. Yusuf günahtan korunmak için zindanı tercih etti. Karakterini koruma duası.' },
+  { peygamber: 'Mü\'minler', kategori: 'Hidayet duası', sure: 'Fâtiha, 6-7', arabic: 'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ', latin: 'İhdine\'s-sırâta\'l-müstakîm. Sırâta\'llezîne en\'amte aleyhim ğayri\'l-mağdûbi aleyhim ve le\'d-dâllîn.', meaning: 'Bizi doğru yola ilet. Kendilerine nimet verdiklerinin yoluna ilet, gazaba uğrayanların ve sapanların yoluna değil.', aciklama: 'Her gün namazlarda okuduğumuz Fâtiha\'nın özü — doğru yolu istemek.' }
+];
+const SAHABE = [
+  { name: 'Hz. Hatîce (RA)', title: 'İlk inanan, Peygamberimizin eşi, başarılı tüccar', story: 'Hz. Hatice kendi adına ticaret yapan, Mekke\'nin en saygın iş kadınlarındandı. Çalışkanlığı, dürüstlüğü ve kararlığıyla tanınırdı. Peygamberimiz (sav)\'e Hira\'da ilk vahiy geldiğinde titreyerek eve döndü, Hatice onu sakinleştirdi: "Allah seni asla utandırmaz, sen akrabalık bağını gözetir, doğru söylersin" dedi. İlk inanan O\'dur. Servetini, gücünü, kalbini İslam yolunda harcadı.', lesson: 'Bir kadın akıllı, çalışkan, kararlı olabilir; sevdiği eşine de en büyük destek olabilir. Güç sessiz olur.' },
+  { name: 'Hz. Aişe (RA)', title: 'Âlim, hadis aktarıcısı, öğretmen', story: 'Hz. Aişe Peygamberimizin eşi ve genç yaşına rağmen İslam\'ın en büyük âlimlerinden biriydi. 2210 hadis aktarmıştır. Sahabe en zorlu fıkıh sorularını ona soruyor, cevap alıyordu. Hata ettiğinde sahabeyi düzeltir, doğru bildiğini açıkça söylerdi. Sünnet ve fıkıh onun aktardıklarıyla yaşadı.', lesson: 'İlim öğrenmek bir kadına yakışır; konuştuğunda dinletir, yazdığında okutur. Genç olmak, az bilmek demek değildir.' },
+  { name: 'Hz. Sümeyye (RA)', title: 'İslam\'ın ilk şehidi', story: 'Sümeyye binti Hayyât, eşi Yâsir ve oğlu Ammâr ile birlikte ilk Müslümanlardandı. Mekkeli müşrikler onlara işkence ettiler. Sümeyye annemiz hiç eğilmedi, hiç sözünü geri almadı. Ebu Cehil tarafından mızraklanarak şehid edildi — İslam tarihinin ilk şehidi bir kadındı.', lesson: 'Bir kadının imanı, o kadını bir orduya dönüştürebilir. Korkmamak öğrenilir, doğru söylemek öğrenilir.' },
+  { name: 'Hz. Esmâ binti Ebî Bekir (RA)', title: '"İki Kuşaklı" — hicret kahramanı', story: 'Peygamberimiz ve Hz. Ebu Bekir Mekke\'den Medine\'ye hicret ederken Sevr mağarasında saklandılar. Esmâ her gece, müşriklerin gözünden gizli, mağaraya yemek taşıdı. Hamile olduğu halde dağa tırmandı. Yemek torbasını bağlamak için kendi kuşağını ikiye yırttı — bu yüzden "İki Kuşaklı" diye anıldı. 100 yaşına kadar yaşadı, son nefesine kadar dimdik durdu.', lesson: 'Cesaret büyük laflarda değil, gece dağa tırmanan ayaklardadır. Bir kadın bedeniyle de kalbiyle de cesur olabilir.' },
+  { name: 'Nesîbe binti Ka\'b — Ümmü Umâra (RA)', title: 'Uhud kahramanı', story: 'Uhud savaşında Müslümanlar dağıldığında, Nesîbe kılıcını çekip Peygamberimizin yanında savaştı. 12 yara aldı. Peygamberimiz "Bugün sağıma soluma baktığım her yerde Ümmü Umâra\'yı savaşırken gördüm" demiştir. Bir oğlu şehid olduğunda elinden kılıcı bırakmadı.', lesson: 'Bir kadın yumuşak olabilir ama gerektiğinde cesaret ondan akar. Tehlike karşısında durmak öğrenilir.' },
+  { name: 'Hz. Hafsa (RA)', title: 'Kuran\'ın muhafızı', story: 'Hz. Hafsa, Hz. Ömer\'in kızı ve Peygamberimizin eşiydi. Okuma yazma bilen az sayıdaki sahâbîden biri. Hz. Ebu Bekir döneminde toplanan Mushaf\'ın ilk nüshası, vefatına kadar onun evinde muhafaza edildi. Kuran\'ın bütün halinde günümüze ulaşmasında onun emaneti olmuştur.', lesson: 'Okumak, yazmak, emanet taşımak — bunlar büyük şeyler. Bir kadın tarihin akışını sessizce değiştirebilir.' },
+  { name: 'Hz. Fâtıma (RA)', title: '"Cennet kadınlarının efendisi"', story: 'Hz. Fâtıma sade yaşadı, az konuştu, çok sabretti. Ev işleri yorgunluk verince Peygamberimizden hizmetçi istemeye gitti. Peygamberimiz "yatmadan önce 33 sübhanallah, 33 elhamdülillah, 34 Allahuekber söyle, sana hizmetçiden hayırlı olur" dedi. Bu, "Tesbîhâtü Fâtıma" olarak bugün hâlâ okunur.', lesson: 'Hayat zorluyor diye Allah\'a sığınmak güçsüzlük değil, akıllılıktır. Bir kadın sade olabilir, sade güzel olabilir.' },
+  { name: 'Hz. Ümmü Selîm (RA)', title: 'Mehri olarak iman isteyen kadın', story: 'Ümmü Selîm dul kalmış genç bir kadındı. Ebû Talha onunla evlenmek istedi ama henüz Müslüman olmamıştı. Ümmü Selîm "Ben mehir olarak para istemiyorum, sen Müslüman ol — bu benim mehrim olsun" dedi. Ebû Talha bu eşsiz cevap karşısında iman etti.', lesson: 'Bir kadın evlilikte değer pazarlığı yapabilir — ama o değer altın değil, iman olabilir. Kendine biçtiğin değer hayatını şekillendirir.' },
+  { name: 'Hz. Halîme (RA)', title: 'Peygamberimizin sütannesi', story: 'Halîme yoksul bir bedevi kadındı. Mekke\'ye süt verecek çocuk almak için gidenler arasındaydı. Tüm kadınlar zengin ailelerin çocuklarını seçti, geriye yetim Muhammed kaldı. Halîme "boş dönmektense O\'nu alayım" dedi. O günden sonra hayatına bereket yağdı: çorak develeri süt vermeye başladı, kuru toprakları yeşerdi.', lesson: 'Şefkat eden el, yağmur gibi yağar geri. Yetime, küçüğe, çaresize uzatılan el bereket çağırır.' },
+  { name: 'Hz. Rufeyde (RA)', title: 'İslam\'ın ilk hemşiresi', story: 'Rufeyde el-Eslemiyye, Medine\'de mescidin yanına çadır kurmuş, yaralıları tedavi ederdi. Hendek savaşında Sa\'d ibn Muâz yaralandığında Peygamberimiz onu Rufeyde\'nin çadırına gönderdi. Tıp bilgisini gönüllü hizmete dönüştürdü; askere ders verdi, kadınları eğitti. İslam\'ın bilinen ilk sağlık çalışanı bir kadındı.', lesson: 'Bir bilgiyi insanlara hizmet için kullanmak değer kazandırır. Şifa olmak — en güzel mesleklerden biri.' }
+];
+const EDUCATIONAL_VIDEOS = [
+  { channel: 'Diyanet TV', title: 'Kadın Sahabesi serisi', desc: 'Kadın sahabilerin hikayelerini detaylı anlatan seri.' },
+  { channel: 'TRT EBA', title: 'Genç bakış programları', desc: 'Yetişkinlere yönelik bilim, kültür, eğitim içerikleri.' },
+  { channel: 'TED-Ed (Türkçe altyazılı)', title: 'Kısa eğitim videoları', desc: '5 dakikalık animasyonlu videolar — görsel hafızana ideal.' },
+  { channel: 'Bay Bilim', title: 'Kısa bilim videoları', desc: 'Günlük yaşamdan bilim — sıkıcı değil, eğlenceli.' },
+  { channel: 'Karim wa Jana', title: 'Çocuk Arapçası', desc: 'Görsel ve yavaş Arapça — kursta öğrendiklerin bu videolarda.' },
+  { channel: 'BBC Learning English', title: 'Günlük 5 dakika İngilizce', desc: 'Doğal hızlı İngilizce, alt yazı seçeneği var.' },
+  { channel: 'Diyanet TV', title: 'Kuran ve hayat', desc: 'Kuran ayetlerinin günlük hayatla bağlantısı.' },
+  { channel: 'TRT Çocuk + Genç', title: 'Belgesel kuşağı', desc: 'Doğa, tarih, kültür belgeselleri.' },
+  { channel: 'Genç hocalardan sohbetler', title: 'Sade dilde sohbetler', desc: 'Yumuşak, anlaşılır, modern dilde dini sohbetler.' },
+  { channel: 'Adam wa Mishmish', title: 'Arapça çizgi film', desc: 'Telaffuzu netleştirmek için ideal — alt yazılı.' }
+];
+const SPORT_PROGRAM = {
+  1: { name: 'Hafta 1 — Buz kırma', desc: 'Çok hafif başlıyoruz. Vücudunu zorlamak değil, "ben bunu yapıyorum" hissini kurmak.', daily: [{ name: '5 dakika ev içinde yürüyüş', detail: 'Müzik aç, koridorda dolaş — sayar' }, { name: '5 squat (çömelme)', detail: 'Yavaşça, sandalyeye oturur gibi' }, { name: '3 esneme hareketi', detail: 'Kollarını yukarı uzat, yana eğil, öne eğil' }] },
+  2: { name: 'Hafta 2 — Ritim oluyor', desc: 'Geçen hafta yapabildin. Bu hafta biraz daha.', daily: [{ name: '8 dakika yürüyüş', detail: 'İç-dış fark etmez' }, { name: '8 squat', detail: 'Yavaş ve doğru form — sayı değil, his' }, { name: '5 duvar push-up', detail: 'Duvara karşı dur, ellerini koy, vücudunu yaklaştır' }, { name: '5 esneme', detail: 'Boyun, omuz, sırt' }] },
+  3: { name: 'Hafta 3 — Vücut alışıyor', desc: '15 günü geçtin. Spor artık yabancı değil.', daily: [{ name: '10 dakika yürüyüş', detail: 'Mümkünse dışarıda, sabah veya akşam serinde' }, { name: '10 squat', detail: 'Daha derin, daha yavaş' }, { name: '8 duvar push-up', detail: 'Veya diz üstü push-up dene' }, { name: '20 saniye plank', detail: 'Karın ve kollarda gerginlik hisset' }, { name: '5 esneme', detail: 'Sabah uyandığın gibi yap' }] },
+  4: { name: 'Hafta 4 — Bir ay! İlk milat', desc: 'Bir ay önce başladın. Şimdi seni tutmak yok.', daily: [{ name: '12 dakika yürüyüş', detail: 'Hızlı tempolu — kendine zorlanmadan' }, { name: '12 squat', detail: 'Veya 8 squat + 5 sumo squat' }, { name: '10 push-up (diz üstü)', detail: 'Diz yerde, vücut düz' }, { name: '30 saniye plank', detail: 'Bölersen 2x15 saniye' }, { name: '5 dakika yoga', detail: 'YouTube\'da "5 dakika sabah yogası" ara' }] },
+  5: { name: 'Hafta 5 — Devam ediyor', desc: 'Spor artık programının doğal parçası.', daily: [{ name: '15 dakika yürüyüş', detail: 'Bir gün hızlı, bir gün normal' }, { name: '15 squat', detail: 'Set 1: 8, Set 2: 7' }, { name: '12 push-up (diz üstü)', detail: 'Diz üstünden tam push-up\'a geçişin başı' }, { name: '40 saniye plank', detail: 'Sabit kal, nefes al' }, { name: 'Hafif dans 5 dk', detail: 'Sevdiğin müzik aç, hareket et' }] },
+  6: { name: 'Hafta 6 — Güçleniyorsun', desc: 'Aynaya bak. 6 hafta önceki sen değilsin.', daily: [{ name: '18 dakika yürüyüş', detail: 'Hız değiştir, ara ver' }, { name: '20 squat', detail: 'Set 1: 10, Set 2: 10' }, { name: '15 push-up', detail: '10 diz üstü + 5 normal deneyebilirsin' }, { name: '50 saniye plank', detail: 'Tek seferde' }, { name: '8 dakika yoga', detail: 'Esneklik kazanma zamanı' }] },
+  7: { name: 'Hafta 7 — Yeni seviye', desc: 'Bedeninin nasıl değiştiğini sen bile fark edemedin.', daily: [{ name: '20 dakika yürüyüş', detail: 'Mümkünse adım sayar — hedef 2500+ adım' }, { name: '25 squat', detail: 'Set 1: 13, Set 2: 12' }, { name: '18 push-up', detail: 'Mümkün olduğunca normal form' }, { name: '60 saniye plank', detail: 'Bir dakika!' }, { name: '10 dakika tam yoga', detail: 'Tüm vücut esneme' }] },
+  8: { name: 'Hafta 8+ — Zirve', desc: 'Bu seviyeye geldin. Şimdi sürdürmek = zafer.', daily: [{ name: '20-30 dakika yürüyüş', detail: 'Günlere göre değiştir' }, { name: '25-30 squat', detail: 'Set bazlı' }, { name: '20 push-up', detail: 'Form korunsun' }, { name: '60+ saniye plank', detail: 'Yan plank da ekle' }, { name: '10-15 dk yoga / esneme', detail: 'Vücudunu dinle' }] }
+};
+const WRITING_PROMPTS = [
+  'Bugün beni en çok ne mutlu etti? Detaylıca anlat.',
+  'Eğer bir hayvan olsaydım, hangisi olurdum? Neden?',
+  'En güzel çocukluk anım: bir tane seç ve yaz.',
+  'Bugün gördüğüm bir şey beni düşündürdü. Neydi?',
+  'Annem ya da babam hakkında 5 satır.',
+  'Hayatımda en sevdiğim koku.',
+  'Eğer bir dağda bir gece geçirsem, ne hissederdim?',
+  'Bana göre "huzur" ne demek?',
+  'Bir gün ünlü biri olsam ne için olmak isterdim?',
+  'Bugünkü hava nasıldı? Sadece havayı, başka bir şey değil — anlat.',
+  'Bana göre Cennet nasıl bir yer? Hayalimi anlat.',
+  'En sevdiğim yemek ve onu kim yapar.',
+  'Bir mektup yaz: 30 yaşındaki Hatice\'ye.',
+  'Bugün okuduğum bir cümle bana ne hatırlattı?',
+  'Hangi kadın sahabe gibi olmak isterdim? Neden?',
+  'Eğer bir kafe açsam, ismi ne olurdu? Nasıl bir yer olurdu?',
+  'Yapmak istediğim bir seyahat. Nereye, kiminle, neden?',
+  'En sevdiğim ayetin ya da hadisin bana ne hissettirdiği.',
+  'Bana göre güzel bir kadın nasıl olur? Görünüşten bağımsız anlat.',
+  'Hayatımda bana en çok şey öğreten kişi ve onun bir cümlesi.',
+  'Bugün biriyle konuşurken hissettiğim bir duygu.',
+  'Yarın sabah uyandığımda yapmak istediğim ilk üç şey.',
+  'Allah\'a yazılmış bir kısa mektup.',
+  'Eğer bir kitap yazsaydım, ismi ne olurdu? Konusu ne olurdu?',
+  'Geçen hafta hayatımda ne değişti?',
+  'Bana bir mucizevi şey olsa, ne olmasını isterdim?',
+  'Bir sınıf öğretmeniyim. Öğrencilerime ne öğretirdim?',
+  'Sevdiğim üç koku, üç tat, üç ses.',
+  'Bugün dua ederken Allah\'a ne anlattım?',
+  'On yaşıma sesleniyorum: ona ne söylerdim?'
+];
+const KURS_BLOCKS_BASE = [
+  { id: 'fajr', time: '04:00', icon: 'fajr', cat: 'kuran', title: '1. Fecr namazı kıl', desc: 'Sabah ilk işin', steps: ['Abdest al, namazı kıl', 'Sabah duasını oku (Öğren sekmesinde)', '15 dk Kuran-ı Kerim oku — kaldığın sayfadan', 'Sayfanın fotoğrafını çek, uygulamaya yükle', 'Sesli okumayı dene — beyne 3 kat daha iyi yapışıyor'], note: 'Sabah okuduğun ayet, gün boyu seninle kalır. Bu yüzden Fecr en bereketli vakit.' },
+  { id: 'sleep1', time: '04:30', icon: 'sleep', cat: 'rest', title: '2. Tekrar uyku', desc: 'Vücut hâlâ dinlenmek istiyor', steps: ['Yastığa dön', '06:30 alarmı kur', 'Telefonu uzak bir yere koy'], note: '' },
+  { id: 'breakfast', time: '07:00', icon: 'breakfast', cat: 'health', title: '3. Sabah hazırlığı + bir şey ye', desc: 'Beyin yakıtı — kursa boş gitme', steps: ['Yüzünü yıka, hazırlan', 'Bir bardak su iç', 'Küçük de olsa bir şeyler ye — peynir ekmek, hurma süt, yumurta', 'Çantanı kontrol et'], note: 'Aç beyin odaklanmaz. Kursta öğrenmek istiyorsan, beyne yakıt lazım.' },
+  { id: 'school', time: '08:00', icon: 'school', cat: 'school', title: '4. Kursta dikkatli dinle (08–12)', desc: 'Bugünün kazanımı burada', steps: ['Telefonu sessize al, çantaya koy', 'Defter aç, ders boyunca yaz — sadece dinleme, çiz, oklarla bağla', 'Önemli yerleri renkli kalemle işaretle', 'Anlamadığın şeyi mutlaka sor'], note: 'Görsel hafızan güçlü — ders notlarını mind-map gibi çiz, beyin yapışkan gibi tutar.' },
+  { id: 'return', time: '12:00', icon: 'return', cat: 'school', title: '5. Eve dönüş + öğle namazı + yemek', desc: 'Sıcakta yorgun döneceksin', steps: ['Eve gelir gelmez bol su iç', 'Üstünü değiştir, rahat kıyafet giy', 'Öğle namazı kıl, kısa duayı oku', 'Yemeğini ye'], note: '' },
+  { id: 'rest', time: '13:00', icon: 'rest', cat: 'rest', title: '6. Dinlenme — 30 dk şekerleme', desc: 'Qatar sıcağı seni vurdu, dinlen', steps: ['Yatağa uzan, alarmı 30 dk\'ya kur', 'Telefonu yatağın yanına koyma', 'Çok uyuma — 30 dk yeter, fazlası moral bozar'], note: '20-30 dk şekerleme beyni yeniler. Daha uzun olursa tam tersi olur.' },
+  { id: 'arabic_word', time: '14:00', icon: 'words', cat: 'arabic', title: '7. Bugünün cümleleri', desc: 'Günde 2 İngilizce + 2 Arapça cümle', steps: ['Öğren sekmesini aç', 'Her cümleyi sesli dinle, 3 kez sesli tekrar et', 'Cümleyi Türkçesiyle birlikte oku', 'Defterine yaz — cümle + Türkçe anlamı', 'Akşam yatmadan önce gözünü kapat, cümleleri içinden tekrar et'], note: 'Bugün öğrendiğin cümleleri gerçek hayatta bir kez kullanmayı dene — annene, kardeşine, aynaya karşı.' },
+  { id: 'main1', time: '14:30', icon: 'words', cat: 'skill', title: '8. Günün ana çalışması', desc: 'Bugünün özel temasına göre', steps: [], note: '' },
+  { id: 'break1', time: '15:15', icon: 'rest', cat: 'rest', title: '9. Mola', desc: 'Su, hareket, biraz hava', steps: ['Bir bardak soğuk su', 'Camı aç ya da balkona çık', 'Telefonu açma — 15 dk gerçek mola'], note: '' },
+  { id: 'asr_dua', time: '15:30', icon: 'asr', cat: 'prayer', title: '10. İkindi namazı + dua', desc: 'Asr vakti', steps: ['Abdest al', 'İkindi namazını kıl', 'İkindi duasını oku (Öğren sekmesinde)', 'Bir dakika kendin için dua et — istediklerini söyle'], note: 'İkindi vakti dua kabul vakitlerindendir.' },
+  { id: 'hifz', time: '15:45', icon: 'hifz', cat: 'kuran', title: '11. Hıfz tekrarı (15 dk)', desc: 'Önceki sureleri pekiştir', steps: ['Mushafı aç, en son ezberlediğin sureyi oku', 'Sayfanın fotoğrafını zihninde çek — 10 sn bak, kapat, hatırla', 'Sesli okuyarak tekrar et — 5 kez', 'Bir hafız videosu izle aynı sureden'], note: 'Görsel hafızan ezbere yardım eder: aynı Mushaf\'ı bırakma, ayet sayfanın hep aynı yerinde olsun.' },
+  { id: 'sport', time: '16:15', icon: 'sport', cat: 'physical', title: '12. Bugünün sporu', desc: 'Hafta seviyesine göre — 10-15 dk', steps: ['Spor sekmesini aç', 'Bugünün listesini takip et', 'Her egzersizi yaptıkça işaretle', 'Müzik aç — sıkılma'], note: 'Spor güzelleşmek için değil, güçlenmek için. Güçlü beden = berrak beyin = daha çok başarı.' },
+  { id: 'free', time: '16:45', icon: 'free', cat: 'family', title: '13. Serbest 30 dk', desc: 'Aile, su iç, hafif sohbet', steps: [], note: '' },
+  { id: 'maghrib', time: '17:30', icon: 'maghrib', cat: 'prayer', title: '14. Akşam namazı + dua', desc: 'Mağrib vakti', steps: ['Abdest al', 'Akşam namazını kıl', 'Akşam duasını oku', 'Bir dakika sessizce dua et — dua kabul vakti'], note: '' },
+  { id: 'reflect', time: '18:00', icon: 'reflect', cat: 'reflect', title: '15. Yarın için 5 dakika plan', desc: 'Yarın ne yapacağım?', steps: ['Sessiz bir yer bul', 'Yarın için 3 küçük niyet yaz', 'Hangi 3 şeyi mutlaka yapmak istiyorsun?'], note: '' },
+  { id: 'dinner', time: '18:30', icon: 'dinner', cat: 'health', title: '16. Akşam yemeği — ailece, telefonsuz', desc: 'Aile sofrası', steps: ['Telefonu odana koy', 'Konuşmaya katıl', 'Yavaş ye, tadını al'], note: '' },
+  { id: 'read', time: '19:00', icon: 'read', cat: 'skill', title: '17. Hafif okuma — kitap (45 dk)', desc: 'Telefondaki uygulamayı aç', steps: ['Telefondaki kitap uygulamasını aç', 'En az 30 dk oku', 'Notunu Yaz sekmesine kaydet — bugün okuduklarından bir cümle', 'Beğendiğin bir cümleyi defterine yaz'], note: 'Ekran okuma uykuyu bozar. Mümkünse kağıt kitap. Ama en geç 19:45\'te bırak.' },
+  { id: 'isha', time: '19:45', icon: 'isha', cat: 'prayer', title: '18. Yatsı namazı + dua', desc: 'Günü kapat', steps: ['Abdest al', 'Yatsı namazını kıl', 'Vitir namazını da kıl', 'Yatsı duasını oku — uyku duası gibi'], note: '' },
+  { id: 'family', time: '20:15', icon: 'family', cat: 'family', title: '19. Akşam defteri + günlük yazı', desc: '20 dk: bugün ne başardım + yaratıcı yazı', steps: ['Bugün sekmesinde 3 satırı doldur', 'Yaz sekmesinde günün konusuyla 5-10 satır yaz', 'Telefonu yatak odasından çıkar'], note: 'Her gün küçük bir yazı = 1 yıl sonra koca bir kitap. Kendini tanımanın yolu yazmak.' },
+  { id: 'sleep_night', time: '21:00', icon: 'sleep_night', cat: 'rest', title: '20. Uyku — 8 saat hak ettin', desc: 'Telefonu uzakta bırak', steps: ['Yatağa uzan', 'Bugünkü cümleleri zihninde tekrar et — 1 dk', 'Ayet ya da dua ile uyu'], note: 'Uyku düzenli olduğunda her şey daha kolay: sınav, kurs, ezber, mood. Sabit saat = sabit beyin.' }
+];
+const SCHEDULES = {
+  0: { name: 'Pazar', theme: 'İngilizce ve görsel öğrenme günü',
+    main1: { title: '8. İngilizce çalışma — 45 dk', desc: 'Video + 10 cümle yazılı pratik', icon: 'english', cat: 'skill',
+      steps: ['BBC Learning English videosu izle (10 dk, alt yazılı)', 'Bugünkü 2 İngilizce kelimeyi içeren 5 cümle yaz', '5 cümleyi sesli okuyarak tekrar et', 'Annemle/babanla bir cümle pratiği yap'],
+      note: 'Sesli okuma + yazma + cümle kurma = 3 farklı yoldan beyne giriyor. Hızlı öğrenirsin.' } },
+  1: { name: 'Pazartesi', theme: 'Yaratıcı saat — sahabe günü',
+    main1: { title: '8. Çizim, hat veya yazı — 45 dk', desc: 'Bu hafta sahabesini öğren ve çiz/yaz', icon: 'creative', cat: 'creative',
+      steps: ['Öğren sekmesinde bu haftanın kadın sahabesini oku', 'Hikayeyi defterine kendi cümlelerinle özetle (5-7 cümle)', 'Bir resim çiz — sahabenin yaşadığı zamanı düşün', 'Bu sahabeden öğrendiğin bir dersi yazıyla anlat'],
+      note: 'Görsel hafızan güçlü — bir hikayeyi resimle eşleştirirsen unutmazsın. Sahabe hikayeleri sıradan değil; içlerinde sana cesaret veren ipuçları var.' } },
+  2: { name: 'Salı', theme: 'Hareket günü — bedenini hisset',
+    main1: { title: '8. Uzun yoga / dans — 30 dk', desc: 'Spor seviyenin üstüne ekstra hareket', icon: 'physical', cat: 'physical',
+      steps: ['YouTube\'da "yoga for beginners 30 min" ara', 'Sevdiğin müzikle 10 dk dans et — odanda', 'Sonra 10 dk esneme', 'Su iç, dinlen'],
+      note: 'Yorgun bedende özgüven yaşamaz. Hareket ettikçe mood otomatik düzelir — bilim bunu kanıtladı.' } },
+  3: { name: 'Çarşamba', theme: 'Mutfak ve hayat becerisi',
+    main1: { title: '8. Mutfakta veya ev becerisinde — 45 dk', desc: 'Annenle bir şey yap', icon: 'practical', cat: 'skill',
+      steps: ['Annene sor: "Bugün ne pişiriyorsun?" ve yardım et', 'Bir tarif öğren (basit olsun: salata, kurabiye, pilav)', 'Tarifi defterine yaz', 'Ya da dolap düzenleme, ütü, dikiş gibi bir hayat becerisi öğren'],
+      note: 'Kendi kendine bir tarif yapabildiğini bilmek = özgüven. "Şunu yapabiliyorum" hissi büyümenin kendisi.' } },
+  4: { name: 'Perşembe', theme: 'Kayıt günü — kameraya konuş',
+    main1: { title: '8. Kameraya 2-3 dakika anlatım', desc: 'Bu haftadan bir konuyu kendine anlat', icon: 'recording', cat: 'creative',
+      steps: ['Sessiz bir yere geç', 'Telefonun kamerasını aç', 'Bu haftadan bir konu seç: yeni kelime, hadis, sahabe hikayesi', '2-3 dakika kendine anlat — kimseye gösterme, sadece sen', 'Kayıt videoyu sakla — hafta sonu izle'],
+      note: 'İlk haftalar zor gelir, sonra alışırsın. Bir ay sonra geri dön, ilk videoyla son videoyu karşılaştır — özgüvenin kendisi orada.' } },
+  5: { name: 'Cuma', theme: 'Arapça günü + atölye', special: true },
+  6: { name: 'Cumartesi', theme: 'Yenilenme + dizi günü', special: true }
+};
+const FRIDAY_BLOCKS = [
+  { id: 'fajr', time: '04:00', icon: 'fajr', cat: 'kuran', title: '1. Fecr namazı kıl', desc: 'Cuma sabahı bereketli', steps: ['Abdest al, namazı kıl', 'Sabah duasını oku', 'Kuran-ı Kerim — Kehf suresinden okumak güzel sünnet', 'Sayfa fotoğrafı yükle'], note: 'Cuma sabahı Kehf suresi okumak, iki Cuma arası nur olur denmiş.' },
+  { id: 'sleep1', time: '04:30', icon: 'sleep', cat: 'rest', title: '2. Tekrar uyku', desc: '', steps: [], note: '' },
+  { id: 'breakfast', time: '08:00', icon: 'breakfast', cat: 'health', title: '3. Hafif kahvaltı', desc: 'Arapça dersine hazırlık', steps: ['Hafif bir şeyler ye', 'Arapça defterini hazırla'], note: '' },
+  { id: 'arabic', time: '09:00', icon: 'arabic', cat: 'arabic', title: '4. Arapça özel ders — 2 saat', desc: 'Hafta\'nın en önemli dersi', steps: ['Telefonu odadan çıkar', 'Defter, kalem, mushaf hazır', 'Hocanın söylediği her şeyi yaz — çiz, oklarla bağla', 'Yeni kelimeleri akşam Anki/Quizlet\'e gir', 'Anlamadığın yeri mutlaka sor'], note: 'Bu 2 saat haftanın en kritik 2 saati. "Buradan çıktığımda 5 yeni şey bileceğim" niyet et.' },
+  { id: 'jumua', time: '11:30', icon: 'friday', cat: 'prayer', title: '5. Cuma namazı vakti', desc: 'Manevi atmosfer', steps: ['Aile ile Cuma hutbesini dinle', 'Cuma duasını oku', 'Bir saat dua kabul vakti'], note: 'Cuma günü içinde bir saat var, dua kabul olur.' },
+  { id: 'lunch', time: '13:30', icon: 'family', cat: 'family', title: '6. Aile öğle yemeği — Cuma masası', desc: 'Telefonsuz', steps: [], note: '' },
+  { id: 'specialist', time: '14:30', icon: 'specialist', cat: 'creative', title: '7. Cuma atölyesi — 90 dk derin çalışma', desc: 'Çizim, hat, yazı, video — bu hafta bir ürün çıkar', steps: ['Bu hafta bir tek şeye odaklan: çizim mi, hat mı, yazı mı, video mu', '90 dk boyunca sadece o', 'Sonunda ne ürettiğini fotoğrafla', 'Babana göster'], note: 'Cuma derin çalışma günün. Bir hafta = bir proje çıktısı. Bir yıl sonra 50 proje olur.' },
+  { id: 'break_f', time: '16:00', icon: 'rest', cat: 'rest', title: '8. Mola + ikindi namazı', desc: '', steps: [], note: '' },
+  { id: 'hifz_f', time: '16:30', icon: 'hifz', cat: 'kuran', title: '9. Hıfz tekrarı + Kuran okuma', desc: '20 dk — Cuma günü hıfz daha yapışkan', steps: ['Önceki ezberini oku', 'Yeni ayet öğren — sayfa fotoğrafı tekniği', 'Sesli okuyarak tekrar et'], note: '' },
+  { id: 'family_f', time: '18:00', icon: 'family', cat: 'family', title: '10. Aile akşamı — Cuma huzuru', desc: 'Telefonsuz aile zamanı', steps: [], note: '' },
+  { id: 'isha_f', time: '19:45', icon: 'isha', cat: 'prayer', title: '11. Yatsı namazı', desc: '', steps: [], note: '' },
+  { id: 'read_f', time: '20:15', icon: 'read', cat: 'skill', title: '12. Hafif okuma + günlük yazı', desc: 'Yaratıcı yazı bloğu', steps: ['Yaz sekmesinde günün yazı konusunu yaz', 'Kitap notunu yaz'], note: '' },
+  { id: 'sleep_f', time: '21:30', icon: 'sleep_night', cat: 'rest', title: '13. Uyku', desc: '', steps: [], note: '' }
+];
+const SATURDAY_BLOCKS = [
+  { id: 'fajr', time: '04:30', icon: 'fajr', cat: 'kuran', title: '1. Fecr namazı + kısa Kuran', desc: 'Esnek sabah — uzun okuma şart değil', steps: ['Abdest al, namazı kıl', 'Sabah duasını oku', '5-10 dk Kuran okumak yeter', 'Sayfa fotoğrafını çek'], note: '' },
+  { id: 'sleep1', time: '05:00', icon: 'sleep', cat: 'rest', title: '2. Geç kalk — bedeninin hakkı', desc: 'Hak ettin', steps: [], note: 'Cumartesi vücudunu dinle. Bütün hafta çalıştın.' },
+  { id: 'breakfast', time: '09:00', icon: 'breakfast', cat: 'health', title: '3. Geniş kahvaltı — Cumartesi sofrası', desc: 'Ailece kahvaltı', steps: [], note: '' },
+  { id: 'kuran_s', time: '10:30', icon: 'kuran', cat: 'kuran', title: '4. Kuran okuma — hafif tempo', desc: '20 dk, baskısız', steps: ['Kaldığın sayfadan oku', 'Sayfa fotoğrafını çek', 'Sesli okumayı dene'], note: '' },
+  { id: 'drama', time: '12:00', icon: 'drama', cat: 'creative', title: '5. Sevdiğin diziden bölüm — 1 saat', desc: 'YouTube\'dan, planlı keyif', steps: ['Aile odasında izle', 'Bir bölüm — sonra dur'], note: 'Hafta boyu beklediğin an. Hak edilmiş bir mola. Ama bir bölüm — fazla değil.' },
+  { id: 'lunch_s', time: '13:30', icon: 'family', cat: 'family', title: '6. Öğle yemeği', desc: '', steps: [], note: '' },
+  { id: 'arabic_word_s', time: '15:00', icon: 'words', cat: 'arabic', title: '7. Haftanın cümle tekrarı', desc: 'Bu haftaki cümleleri tekrar et', steps: ['Öğren sekmesini aç', 'Bu haftaki kelimelere bak', 'Hatırlamadıklarını sesli oku', 'En sevdiğin 5\'ini defterine yaz'], note: 'Tekrar olmadan ezber kalmaz. Her cumartesi 30 dk tekrar = kelimeler senin olur.' },
+  { id: 'hobby', time: '15:30', icon: 'creative', cat: 'creative', title: '8. Hobi / sosyal / dışarı — 2-3 saat', desc: 'Esnek — keyif odaklı', steps: ['Arkadaş, kafe, alışveriş, doğa — istediğin', 'Telefonun fotosu yerine kendin yaşa', 'Akşama kadar enerji topla'], note: 'Sosyal bağlar özgüvenin gizli besini. Yalnız kalmamak büyük bir bakım.' },
+  { id: 'asr_s', time: '16:30', icon: 'asr', cat: 'prayer', title: '9. İkindi namazı', desc: '', steps: [], note: '' },
+  { id: 'review', time: '20:00', icon: 'review', cat: 'reflect', title: '10. Babamla haftalık değerlendirme — 15 dk', desc: 'Bu haftayı birlikte konuşalım', steps: ['Babanla otur', 'Bu hafta neyi başardın?', 'Nerede zorlandın?', 'Gelecek hafta neyi değiştirelim?', 'Açık ol — başaramadığın günler de değerli'], note: 'Bu konuşma programının motoru. Babanın seni dinlemesi en büyük destek.' },
+  { id: 'family_s', time: '20:30', icon: 'family', cat: 'family', title: '11. Aile zamanı', desc: '', steps: [], note: '' },
+  { id: 'sleep_s', time: '22:00', icon: 'sleep_night', cat: 'rest', title: '12. Uyku', desc: '', steps: [], note: '' }
+];
+const SURPRISES = {
+  3: { title: 'Üç gün üst üste!', message: 'Zincirin başlamış. Devam... Sürpriz daha yolun başında.' },
+  7: { title: 'Bir hafta!', message: 'Bu kadar disiplin tesadüf değil. Babanın bir sürprizi seni bekliyor — fark edecek, hazırlanacak.' },
+  14: { title: 'İki hafta!', message: 'Alışkanlık oluyor — ki bu, başarının kendisi. Babandan bir sürpriz daha hazırlanıyor.' },
+  21: { title: 'Üç hafta!', message: 'Bilim diyor ki: 21 gün = yeni bir alışkanlık. Sen kendine ne kadar inansan azdır. Baban da öyle.' },
+  30: { title: 'Bir ay!', message: 'Bir ay önce başladığın şeyi bugün hâlâ yapıyorsun. Bu cümleyi bir daha oku. Babandan büyük bir sürpriz var.' },
+  60: { title: 'İki ay!', message: 'Artık "ben yapamam" cümlesini geride bıraktın. Babanın gözleri parlıyor.' },
+  100: { title: 'Yüz gün!', message: 'Yüz. Tek başına gurur duyulacak bir sayı. Sen artık başka birisin. Babandan özel bir sürpriz var.' }
+};
+const SPORT_MILESTONES = {
+  7: { title: 'Bir haftalık spor!', message: 'Tembel olduğunu söylediğin sen, bir hafta üst üste hareket ettin. Babanın bir sürprizi var.' },
+  21: { title: '21 gün spor!', message: 'Bu artık alışkanlık. Vücudun değişiyor — sen daha fark etmedin ama. Babadan bir sürpriz.' },
+  50: { title: '50 gün spor!', message: 'Elli. Bu sayıyı tut, diz çök, dua et. Bedenini değiştirdin. Babadan büyük sürpriz.' }
+};
+let state = {
+  name: '', setupDone: false, completed: {}, journal: {},
+  streak: { current: 0, longest: 0, lastDate: null },
+  sportStreak: { current: 0, lastDate: null },
+  shownSurprises: [],
+  kuranData: {}, exerciseData: {},
+  enWordsLearned: [], arWordsLearned: [],
+  creativeWriting: {}, bookData: { current: '', notes: {} },
+  showAllDuas: false,
+  lastReportSent: null, lastReportPrompt: null,
+  startDate: null,
+  screenTime: {}
+};
+
+// ── Ekran süresi takibi ──────────────────────────────
+let _appTimeStart = null;
+let _appTimeAccum = 0;
+
+function startAppTimer() {
+  if (!_appTimeStart) _appTimeStart = Date.now();
+}
+function pauseAppTimer() {
+  if (_appTimeStart) {
+    _appTimeAccum += Date.now() - _appTimeStart;
+    _appTimeStart = null;
+  }
+}
+function getAppMinutes() {
+  let total = _appTimeAccum;
+  if (_appTimeStart) total += Date.now() - _appTimeStart;
+  return Math.round(total / 60000);
+}
+function saveAppTime() {
+  const today = todayKey();
+  if (!state.screenTime[today]) state.screenTime[today] = {};
+  state.screenTime[today].appMinutes = getAppMinutes();
+  saveState();
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { pauseAppTimer(); saveAppTime(); }
+  else startAppTimer();
+});
+window.addEventListener('beforeunload', () => { pauseAppTimer(); saveAppTime(); });
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) state = { ...state, ...JSON.parse(saved) };
+  } catch (e) { console.error(e); }
+}
+function saveState() {
+  try {
+    const stateCopy = JSON.parse(JSON.stringify(state));
+    if (stateCopy.kuranData) {
+      const dates = Object.keys(stateCopy.kuranData).sort();
+      if (dates.length > 7) {
+        const olderDates = dates.slice(0, dates.length - 7);
+        olderDates.forEach(d => {
+          if (stateCopy.kuranData[d] && stateCopy.kuranData[d].photo) {
+            stateCopy.kuranData[d].photo = null;
+          }
+        });
+      }
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stateCopy));
+  } catch (e) {
+    console.error('Storage error:', e);
+    if (e.name === 'QuotaExceededError') {
+      alert('Depolama dolu — eski Kuran fotoğrafları temizleniyor.');
+    }
+  }
+}
+function todayKey() { return new Date().toISOString().split('T')[0]; }
+function daysSinceStart() {
+  if (!state.startDate) return 0;
+  return Math.floor((new Date() - new Date(state.startDate)) / (1000 * 60 * 60 * 24));
+}
+function speak(text, lang) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = lang || 'tr-TR';
+  utter.rate = 0.85;
+  speechSynthesis.speak(utter);
+}
+function getTodaySentences() {
+  const day = daysSinceStart();
+  return {
+    en: [{ ...ENGLISH_SENTENCES[(day * 2) % ENGLISH_SENTENCES.length], idx: (day * 2) % ENGLISH_SENTENCES.length },
+         { ...ENGLISH_SENTENCES[(day * 2 + 1) % ENGLISH_SENTENCES.length], idx: (day * 2 + 1) % ENGLISH_SENTENCES.length }],
+    ar: [{ ...ARABIC_SENTENCES[(day * 2) % ARABIC_SENTENCES.length], idx: (day * 2) % ARABIC_SENTENCES.length },
+         { ...ARABIC_SENTENCES[(day * 2 + 1) % ARABIC_SENTENCES.length], idx: (day * 2 + 1) % ARABIC_SENTENCES.length }]
+  };
+}
+function getCurrentSahabe() { return SAHABE[Math.floor(daysSinceStart() / 7) % SAHABE.length]; }
+function getTodayVideo() { return EDUCATIONAL_VIDEOS[daysSinceStart() % EDUCATIONAL_VIDEOS.length]; }
+function getSportWeek() { return Math.min(Math.floor(daysSinceStart() / 7) + 1, 8); }
+function getTodayPrompt() { return WRITING_PROMPTS[daysSinceStart() % WRITING_PROMPTS.length]; }
+function getTodayBlocks() {
+  const dow = new Date().getDay();
+  if (dow === 5) return FRIDAY_BLOCKS;
+  if (dow === 6) return SATURDAY_BLOCKS;
+  return KURS_BLOCKS_BASE.map(b => b.id === 'main1' ? { ...b, ...SCHEDULES[dow].main1 } : b);
+}
+function getBlocksForDay(dow) {
+  if (dow === 5) return FRIDAY_BLOCKS;
+  if (dow === 6) return SATURDAY_BLOCKS;
+  return KURS_BLOCKS_BASE.map(b => b.id === 'main1' ? { ...b, ...SCHEDULES[dow].main1 } : b);
+}
+function completeSetup() {
+  const name = document.getElementById('nameInput').value.trim();
+  if (!name) return;
+  state.name = name; state.setupDone = true; state.startDate = todayKey();
+  saveState(); initApp();
+}
+function initApp() {
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('userName').textContent = state.name;
+  document.getElementById('currentName').textContent = state.name;
+  const now = new Date();
+  document.getElementById('dayName').textContent = DAY_NAMES[now.getDay()];
+  document.getElementById('dateStr').textContent = now.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' });
+  updateStreak();
+  renderToday(); renderLearn(); renderSport(); renderWrite(); renderWeek(); renderBanner();
+  loadJournal(); updateAllStats();
+  startAppTimer();
+  renderScreenTime();
+  setInterval(() => { saveAppTime(); renderScreenTime(); }, 60000);
+  setTimeout(checkReportTime, 1500);
+  setInterval(checkReportTime, 60000);
+}
+function updateAllStats() {
+  document.getElementById('streakNum').textContent = state.streak.current;
+  document.getElementById('sportWeek').textContent = getSportWeek();
+  document.getElementById('totalPages').textContent = Object.values(state.kuranData).filter(d => d && d.read).length;
+  renderStreakDisplay();
+}
+function updateStreak() {
+  const today = todayKey();
+  if (state.streak.lastDate && state.streak.lastDate !== today) {
+    const diff = Math.floor((new Date(today) - new Date(state.streak.lastDate)) / (1000 * 60 * 60 * 24));
+    if (diff > 1) state.streak.current = 0;
+  }
+  saveState();
+}
+function renderStreakDisplay() {
+  const chain = document.getElementById('streakChain');
+  chain.innerHTML = '';
+  const filled = Math.min(state.streak.current % 7 || (state.streak.current > 0 ? 7 : 0), 7);
+  for (let i = 0; i < 7; i++) {
+    const link = document.createElement('div');
+    link.className = 'link' + (i < filled ? ' filled' : '');
+    chain.appendChild(link);
+  }
+}
+function renderScreenTime() {
+  const today = todayKey();
+  const st = state.screenTime[today] || {};
+  const appMins = getAppMinutes();
+  const totalMins = st.totalMinutes || '';
+  const wrap = document.getElementById('screenTimeCard');
+  if (!wrap) return;
+  wrap.innerHTML = `
+    <div class="screen-time-row">
+      <div class="screen-time-auto">
+        <div class="st-label">📱 Uygulamada</div>
+        <div class="st-val">${appMins} <span style="font-size:14px;font-style:normal;font-family:var(--font-body)">dk</span></div>
+      </div>
+      <div class="screen-time-manual">
+        <label>📵 Toplam ekran süresi</label>
+        <div class="screen-time-input-wrap">
+          <input type="number" id="totalScreenInput" value="${totalMins}" placeholder="0" min="0" max="999"
+            oninput="saveTotalScreen(this.value)" inputmode="numeric">
+          <span>dakika</span>
+        </div>
+      </div>
+    </div>
+    <div class="screen-time-hint">Ayarlar → Ekran Süresi (iPhone) veya Dijital Denge (Android) → dakikayı gir</div>
+  `;
+}
+
+function saveTotalScreen(val) {
+  const today = todayKey();
+  if (!state.screenTime[today]) state.screenTime[today] = {};
+  state.screenTime[today].totalMinutes = parseInt(val) || 0;
+  saveState();
+}
+
+function renderBanner() {
+  const dow = new Date().getDay();
+  const messages = {
+    0: 'Pazar — yeni hafta. İngilizce ve görsel öğrenme günü.',
+    1: 'Pazartesi — yaratıcı saat. Bu haftaki sahabe seni bekliyor.',
+    2: 'Salı — bedenini hatırla. Hareket = berraklık.',
+    3: 'Çarşamba — mutfak / hayat becerisi günü. Annene yaklaş.',
+    4: 'Perşembe — kayıt günü. Kameraya 2 dakika kendini ifade et.',
+    5: 'Cuma — bereketli gün. Arapça\'ya odaklan, akşam ailene.',
+    6: 'Cumartesi — yenilenme. Hak ettiklerini hatırla.'
+  };
+  document.getElementById('banner').textContent = messages[dow];
+}
+function renderToday() {
+  const blocks = getTodayBlocks();
+  const today = todayKey();
+  const completed = state.completed[today] || [];
+  const list = document.getElementById('blocksList');
+  list.innerHTML = '';
+  blocks.forEach((b, i) => {
+    const isDone = completed.includes(b.id);
+    const div = document.createElement('div');
+    div.className = 'block' + (isDone ? ' done' : '');
+    div.style.animationDelay = `${i * 40}ms`;
+    let stepsHtml = '';
+    if (b.steps && b.steps.length > 0) {
+      stepsHtml = '<div class="steps"><ol>' + b.steps.map(s => `<li>${s}</li>`).join('') + '</ol></div>';
+    }
+    let noteHtml = b.note ? `<div class="note">💡 ${b.note}</div>` : '';
+    div.innerHTML = `<div class="block-time">${b.time}</div><div class="block-icon cat-${b.cat}">${ICONS[b.icon] || '◆'}</div><div class="block-content"><div class="title">${b.title}</div><div class="desc">${b.desc || ''}</div>${stepsHtml}${noteHtml}</div><div class="block-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>`;
+    div.onclick = (e) => {
+      if (e.target.closest('.block-check')) toggleBlock(b.id);
+      else div.classList.toggle('expanded');
+    };
+    list.appendChild(div);
+  });
+  renderKuranTracker(); renderSportToday(); updateProgress();
+}
+function toggleBlock(id) {
+  const today = todayKey();
+  if (!state.completed[today]) state.completed[today] = [];
+  const arr = state.completed[today];
+  const idx = arr.indexOf(id);
+  if (idx >= 0) arr.splice(idx, 1); else arr.push(id);
+  saveState(); renderToday(); checkDayCompletion();
+}
+function renderKuranTracker() {
+  const today = todayKey();
+  const data = state.kuranData[today] || { lastPage: '', readPage: '', photo: null, voice: false };
+  const wrap = document.getElementById('kuranTracker');
+  wrap.innerHTML = `<div class="kuran-tracker"><h3>Kuran-ı Kerim okuma</h3><div class="subtitle">Her gün — kaldığın sayfadan başla, fotoğraf çek</div><div class="row"><div class="field"><label>Kaldığım sayfa</label><input type="number" id="lastPage" value="${data.lastPage || ''}" placeholder="örn. 152" oninput="saveKuran()"></div><div class="field"><label>Bugün okuduğum sayfa</label><input type="number" id="readPage" value="${data.readPage || ''}" placeholder="örn. 153" oninput="saveKuran()"></div></div><div class="photo-row"><label class="photo-btn"><span>📷</span> ${data.photo ? 'Fotoğrafı değiştir' : 'Sayfa fotoğrafı yükle'}<input type="file" accept="image/*" capture="environment" onchange="uploadKuranPhoto(event)"></label>${data.photo ? `<img src="${data.photo}" class="photo-preview show" alt="Sayfa">` : ''}<button class="voice-toggle ${data.voice ? 'active' : ''}" onclick="toggleVoice()">${data.voice ? '✓ Sesli' : '🔊 Sesli okudum'}</button></div><div class="science-note"><b>Sesli okuma neden önemli?</b> Beyne 3 farklı kanaldan giriyor: göz (görsel), kulak (sesli), ağız (motor). Sessiz okumadan 3 kat daha iyi yapışıyor — Buhârî hadisleri yüksek sesle ezberlemiş. Modern bilim de aynı şeyi söylüyor.</div></div>`;
+}
+function saveKuran() {
+  const today = todayKey();
+  if (!state.kuranData[today]) state.kuranData[today] = {};
+  state.kuranData[today].lastPage = document.getElementById('lastPage').value;
+  state.kuranData[today].readPage = document.getElementById('readPage').value;
+  if (state.kuranData[today].readPage) state.kuranData[today].read = true;
+  saveState(); updateAllStats();
+}
+function uploadKuranPhoto(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const maxW = 800;
+      let w = img.width, h = img.height;
+      if (w > maxW) { h = h * (maxW / w); w = maxW; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const today = todayKey();
+      if (!state.kuranData[today]) state.kuranData[today] = {};
+      state.kuranData[today].photo = canvas.toDataURL('image/jpeg', 0.6);
+      state.kuranData[today].read = true;
+      saveState(); renderKuranTracker(); updateAllStats();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function toggleVoice() {
+  const today = todayKey();
+  if (!state.kuranData[today]) state.kuranData[today] = {};
+  state.kuranData[today].voice = !state.kuranData[today].voice;
+  saveState(); renderKuranTracker();
+}
+function renderSportToday() {
+  const week = getSportWeek();
+  const program = SPORT_PROGRAM[week];
+  const today = todayKey();
+  const done = state.exerciseData[today] || [];
+  document.getElementById('sportToday').innerHTML = `<div class="sport-card"><div class="header-row"><h3>${program.name}</h3><div class="week-pill">Hafta ${week}</div></div><div class="subtitle">${program.desc}</div><div class="exercise-list">${program.daily.map((ex, i) => `<div class="exercise ${done.includes(i) ? 'done' : ''}" onclick="toggleExercise(${i})"><div class="ex-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="ex-content"><div class="ex-name">${ex.name}</div><div class="ex-detail">${ex.detail}</div></div></div>`).join('')}</div></div>`;
+}
+function toggleExercise(i) {
+  const today = todayKey();
+  if (!state.exerciseData[today]) state.exerciseData[today] = [];
+  const arr = state.exerciseData[today];
+  const idx = arr.indexOf(i);
+  if (idx >= 0) arr.splice(idx, 1); else arr.push(i);
+  const week = getSportWeek();
+  if (arr.length === SPORT_PROGRAM[week].daily.length && state.sportStreak.lastDate !== today) {
+    state.sportStreak.current += 1;
+    state.sportStreak.lastDate = today;
+    checkSportMilestone();
+  }
+  saveState(); renderSportToday();
+}
+function checkSportMilestone() {
+  for (const m of [7, 21, 50]) {
+    if (state.sportStreak.current === m && !state.shownSurprises.includes('sport_' + m)) {
+      showSurprise(SPORT_MILESTONES[m]);
+      state.shownSurprises.push('sport_' + m);
+      saveState(); break;
+    }
+  }
+}
+function checkDayCompletion() {
+  const blocks = getTodayBlocks();
+  const today = todayKey();
+  const completed = state.completed[today] || [];
+  const optional = ['rest', 'free', 'family', 'sleep1', 'break1', 'break_f', 'sleep_night', 'sleep_f', 'sleep_s', 'family_f', 'family_s', 'lunch', 'lunch_s'];
+  const required = blocks.filter(b => !optional.includes(b.id));
+  if (required.every(b => completed.includes(b.id)) && state.streak.lastDate !== today) {
+    state.streak.lastDate = today;
+    state.streak.current += 1;
+    if (state.streak.current > state.streak.longest) state.streak.longest = state.streak.current;
+    saveState(); updateAllStats(); checkSurprise();
+  }
+}
+function checkSurprise() {
+  for (const m of Object.keys(SURPRISES).map(Number).sort((a, b) => a - b)) {
+    if (state.streak.current === m && !state.shownSurprises.includes('streak_' + m)) {
+      showSurprise(SURPRISES[m]);
+      state.shownSurprises.push('streak_' + m);
+      saveState(); break;
+    }
+  }
+}
+function showSurprise(s) {
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalMessage').textContent = s.message;
+  document.getElementById('modalOrnament').textContent = 'Babadan sürpriz';
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('show'); }
+function updateProgress() {
+  const blocks = getTodayBlocks();
+  const today = todayKey();
+  const completed = state.completed[today] || [];
+  const optional = ['rest', 'free', 'sleep1', 'break1', 'break_f'];
+  const filtered = blocks.filter(b => !optional.includes(b.id));
+  const pct = Math.round((completed.filter(c => filtered.find(b => b.id === c)).length / filtered.length) * 100);
+  document.getElementById('progressNum').textContent = pct;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+function renderLearn() {
+  const sentences = getTodaySentences();
+  document.getElementById('enWords').innerHTML = sentences.en.map(s => `<div class="sentence-card en"><div class="sentence-context">${s.context}</div><div class="sentence-en">${s.en}<button class="pronounce-inline" onclick="speak('${s.en.replace(/'/g, "\\'")}', 'en-US')" aria-label="Sesli dinle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button></div><div class="sentence-tr">${s.tr}</div><div class="sentence-actions"><button class="sentence-action ${state.enWordsLearned.includes(s.idx) ? 'done' : ''}" onclick="markWord('en', ${s.idx})">${state.enWordsLearned.includes(s.idx) ? '✓ Öğrendim' : '＋ Öğrendim'}</button></div></div>`).join('');
+  document.getElementById('arWords').innerHTML = sentences.ar.map(s => `<div class="sentence-card ar"><div class="sentence-context">${s.context}</div><div class="sentence-ar">${s.ar}<button class="pronounce-inline" onclick="speak('${s.ar.replace(/'/g, "\\'")}', 'ar-SA')" aria-label="Sesli dinle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button></div><div class="sentence-latin">${s.latin}</div><div class="sentence-tr">${s.tr}</div><div class="sentence-actions"><button class="sentence-action ${state.arWordsLearned.includes(s.idx) ? 'done' : ''}" onclick="markWord('ar', ${s.idx})">${state.arWordsLearned.includes(s.idx) ? '✓ Öğrendim' : '＋ Öğrendim'}</button></div></div>`).join('');
+  const todayDua = KURAN_DUALARI[daysSinceStart() % KURAN_DUALARI.length];
+  const showAllDuas = state.showAllDuas || false;
+  const duasToShow = showAllDuas ? KURAN_DUALARI : [todayDua];
+  document.getElementById('duasList').innerHTML = `
+    <div class="dua-intro">
+      ${showAllDuas ? `<b>Tüm dualar (${KURAN_DUALARI.length})</b>` : `<b>Bugünün duası</b> — her gün Kuran\'dan yeni bir dua öğreniyorsun. ${KURAN_DUALARI.length} günde döngü tamamlanır.`}
+      <button class="dua-toggle-btn" onclick="toggleAllDuas()">${showAllDuas ? '↑ Sadece bugünün duası' : '↓ Tüm duaları gör'}</button>
+    </div>
+  ` + duasToShow.map(d => `<div class="dua-card"><div class="header-row"><div class="prayer-name">${d.peygamber}</div><div class="prayer-time">${d.kategori}</div></div><div class="arabic">${d.arabic}</div><div class="latin">${d.latin}</div><div class="meaning">${d.meaning}</div><div class="dua-aciklama">✿ ${d.aciklama}</div><div class="dua-source"><span>${d.sure}</span><a href="https://eraykitap.com/Kur-an-ve-Sunnetten-Dualar/Kur-an-i-Kerimden-Dualar.htm" target="_blank">Kaynak: eraykitap.com</a></div><button class="pronounce" onclick="speak('${d.arabic.replace(/'/g, "\\'")}', 'ar-SA')">▷ Sesli dinle</button></div>`).join('');
+  const sahabe = getCurrentSahabe();
+  const week = Math.floor(daysSinceStart() / 7) + 1;
+  document.getElementById('sahabeCard').innerHTML = `<div class="sahabe-card"><div class="week-tag">${week}. hafta — kadın sahabe</div><div class="name">${sahabe.name}</div><div class="title-line">${sahabe.title}</div><div class="story">${sahabe.story}</div><div class="lesson">✿ ${sahabe.lesson}</div></div>`;
+  const v = getTodayVideo();
+  document.getElementById('watchToday').innerHTML = `<div class="watch-card"><div class="channel">${v.channel}</div><div class="title">${v.title}</div><div class="desc">${v.desc}</div></div>`;
+}
+function toggleAllDuas() {
+  state.showAllDuas = !state.showAllDuas;
+  saveState();
+  renderLearn();
+}
+function markWord(lang, idx) {
+  const arr = lang === 'en' ? state.enWordsLearned : state.arWordsLearned;
+  const i = arr.indexOf(idx);
+  if (i >= 0) arr.splice(i, 1); else arr.push(idx);
+  saveState(); renderLearn();
+}
+function renderSport() {
+  const week = getSportWeek();
+  document.getElementById('sportFull').innerHTML = `<div class="banner" style="margin-bottom: 16px;">Spor zincirin: <b style="color: var(--rose);">${state.sportStreak.current} gün</b> üst üste. <br>Şu an Hafta ${week}.</div>` + Object.entries(SPORT_PROGRAM).map(([w, p]) => `<div class="sport-card" style="${parseInt(w) === week ? '' : 'opacity:0.7;'}"><div class="header-row"><h3>${p.name}</h3><div class="week-pill">${parseInt(w) === week ? 'şu an' : 'Hafta ' + w}</div></div><div class="subtitle">${p.desc}</div><div class="exercise-list">${p.daily.map(ex => `<div class="exercise" style="cursor:default;"><div class="ex-check"></div><div class="ex-content"><div class="ex-name">${ex.name}</div><div class="ex-detail">${ex.detail}</div></div></div>`).join('')}</div></div>`).join('');
+}
+function renderWrite() {
+  const today = todayKey();
+  const writing = state.creativeWriting[today] || '';
+  const book = state.bookData;
+  const todayNote = book.notes[today] || '';
+  document.getElementById('creativeWrite').innerHTML = `<div class="creative-card"><h3>Bugünün konusu</h3><div class="prompt">${getTodayPrompt()}</div><textarea id="creativeText" placeholder="5-10 satır yaz... Doğru yazmak değil, dürüst yazmak önemli." oninput="saveCreative()">${writing}</textarea><div class="word-count" id="wordCount">${writing.trim() ? writing.trim().split(/\s+/).length : 0} kelime</div></div>`;
+  document.getElementById('bookSection').innerHTML = `<div class="book-card"><h3>Şu anda okuduğum kitap</h3><div class="row"><input type="text" id="bookName" value="${book.current || ''}" placeholder="Kitabın adı..." oninput="saveBook()"></div><div class="label">Bugünkü notum</div><textarea id="bookNote" placeholder="Bugün okudum, beni en çok etkileyen cümle / fikir..." oninput="saveBook()">${todayNote}</textarea></div>`;
+  setTimeout(() => {
+    const t = document.getElementById('creativeText');
+    if (t) t.addEventListener('input', () => {
+      document.getElementById('wordCount').textContent = (t.value.trim() ? t.value.trim().split(/\s+/).length : 0) + ' kelime';
+    });
+  }, 50);
+}
+function saveCreative() {
+  state.creativeWriting[todayKey()] = document.getElementById('creativeText').value;
+  saveState();
+}
+function saveBook() {
+  state.bookData.current = document.getElementById('bookName').value;
+  state.bookData.notes[todayKey()] = document.getElementById('bookNote').value;
+  saveState();
+}
+function loadJournal() {
+  const today = todayKey();
+  const j = state.journal[today] || {};
+  document.getElementById('journal1').value = j.line1 || '';
+  document.getElementById('journal2').value = j.line2 || '';
+  document.getElementById('journal3').value = j.line3 || '';
+  ['journal1', 'journal2', 'journal3'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => { autoResize(el); saveJournal(); });
+    autoResize(el);
+  });
+}
+function autoResize(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
+function saveJournal() {
+  state.journal[todayKey()] = {
+    line1: document.getElementById('journal1').value,
+    line2: document.getElementById('journal2').value,
+    line3: document.getElementById('journal3').value
+  };
+  saveState();
+}
+function renderWeek() {
+  const list = document.getElementById('weekList');
+  list.innerHTML = '';
+  const today = new Date().getDay();
+  [0, 1, 2, 3, 4, 5, 6].forEach(dow => {
+    const sched = SCHEDULES[dow];
+    const blocks = getBlocksForDay(dow);
+    const div = document.createElement('div');
+    div.className = 'week-day' + (dow === today ? ' expanded' : '');
+    div.innerHTML = `<div class="week-day-header" onclick="this.parentElement.classList.toggle('expanded')"><div><div class="week-day-name">${DAY_NAMES[dow]}${dow === today ? ' • bugün' : ''}</div><div class="week-day-info">${sched.theme}</div></div><div style="color: var(--text-soft);">▾</div></div><div class="week-day-blocks">${blocks.map(b => `<div class="week-mini"><div class="t">${b.time}</div><div class="n">${b.title}</div></div>`).join('')}</div>`;
+    list.appendChild(div);
+  });
+}
+function generateReport() {
+  const today = todayKey();
+  const blocks = getTodayBlocks();
+  const completed = state.completed[today] || [];
+  const dateStr = new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+  // Block status
+  const blockLines = blocks.map(b => {
+    const done = completed.includes(b.id);
+    return `${done ? '✓' : '✗'} ${b.title}`;
+  }).join('\n');
+
+  // Progress
+  const optional = ['rest', 'free', 'sleep1', 'break1', 'break_f'];
+  const filtered = blocks.filter(b => !optional.includes(b.id));
+  const doneCount = completed.filter(c => filtered.find(b => b.id === c)).length;
+  const pct = Math.round((doneCount / filtered.length) * 100);
+
+  // Kuran - detaylı
+  const kuran = state.kuranData[today] || {};
+  let kuranSection = '';
+  if (kuran.read) {
+    kuranSection = `📖 KURAN TAKİBİ\n`;
+    kuranSection += `Kaldığım sayfa: ${kuran.lastPage || '?'}\n`;
+    kuranSection += `Bugün okuduğum sayfa: ${kuran.readPage || '?'}\n`;
+    if (kuran.lastPage && kuran.readPage) {
+      const diff = parseInt(kuran.readPage) - parseInt(kuran.lastPage);
+      if (diff > 0) kuranSection += `Okunan sayfa adedi: ${diff} sayfa\n`;
+    }
+    kuranSection += `Sesli okuma: ${kuran.voice ? '✓ Evet, sesli okudum' : '✗ Sessiz okudum'}\n`;
+    kuranSection += `Fotoğraf: ${kuran.photo ? '✓ Sayfa fotoğrafı çekti' : '✗ Fotoğraf çekilmedi'}\n`;
+    kuranSection += `Toplam Kuran günü: ${Object.values(state.kuranData).filter(d => d && d.read).length} gün`;
+  } else {
+    kuranSection = `📖 KURAN TAKİBİ\nBugün Kuran okumadı.`;
+  }
+
+  // Sport - detaylı
+  const sportDone = state.exerciseData[today] || [];
+  const sportWeek = getSportWeek();
+  const sportProgram = SPORT_PROGRAM[sportWeek];
+  let sportSection = `💪 SPOR (Hafta ${sportWeek} — ${sportProgram.name})\n`;
+  sportSection += `Tamamlanan: ${sportDone.length}/${sportProgram.daily.length} egzersiz\n`;
+  sportProgram.daily.forEach((ex, i) => {
+    sportSection += `${sportDone.includes(i) ? '✓' : '✗'} ${ex.name} — ${ex.detail}\n`;
+  });
+  sportSection += `Spor zinciri: ${state.sportStreak.current} gün üst üste`;
+
+  // Öğrenilen cümleler
+  const todaySentences = getTodaySentences();
+  let sentenceSection = '';
+  const learnedEN = todaySentences.en.filter(s => state.enWordsLearned.includes(s.idx));
+  const learnedAR = todaySentences.ar.filter(s => state.arWordsLearned.includes(s.idx));
+  if (learnedEN.length > 0 || learnedAR.length > 0) {
+    sentenceSection = `🗣️ BUGÜN ÖĞRENDİĞİ CÜMLELER\n`;
+    learnedEN.forEach(s => {
+      sentenceSection += `[İngilizce — ${s.context}]\n"${s.en}"\n→ ${s.tr}\n\n`;
+    });
+    learnedAR.forEach(s => {
+      sentenceSection += `[Arapça — ${s.context}]\n"${s.ar}"\nOkunuş: ${s.latin}\n→ ${s.tr}\n\n`;
+    });
+  } else {
+    sentenceSection = `🗣️ BUGÜN ÖĞRENDİĞİ CÜMLELER\nBugünkü cümleler henüz işaretlenmedi.`;
+  }
+
+  // Yaratıcı yazı - tam metin
+  const writing = state.creativeWriting[today] || '';
+  const todayPrompt = getTodayPrompt();
+  let writingSection = '';
+  if (writing.trim()) {
+    const wordCount = writing.trim().split(/\s+/).length;
+    writingSection = `✍️ YARATICI YAZI (${wordCount} kelime)\nKonu: "${todayPrompt}"\n\n${writing.trim()}`;
+  } else {
+    writingSection = `✍️ YARATICI YAZI\nBugün henüz yazmadı.\nKonu: "${todayPrompt}"`;
+  }
+
+  // Kitap - detaylı
+  let bookSection = '';
+  if (state.bookData.current) {
+    const bookNote = (state.bookData.notes && state.bookData.notes[today]) || '';
+    bookSection = `📚 KİTAP TAKİBİ\nOkuduğu kitap: "${state.bookData.current}"\n`;
+    bookSection += bookNote ? `Bugünkü notu:\n"${bookNote}"` : `Bugün kitap notu yazmadı.`;
+  } else {
+    bookSection = `📚 KİTAP TAKİBİ\nHenüz kitap girilmedi.`;
+  }
+
+  // Journal
+  const j = state.journal[today] || {};
+  let journalSection = `🌙 AKŞAM DEFTERİ\n`;
+  journalSection += `Bugün başardığım: ${j.line1 || '(yazmadı)'}\n`;
+  journalSection += `Kendimi iyi hissettiğim an: ${j.line2 || '(yazmadı)'}\n`;
+  journalSection += `Yarın için niyetim: ${j.line3 || '(yazmadı)'}`;
+
+  // Ekran süresi
+  saveAppTime();
+  const st = state.screenTime[today] || {};
+  const appMins = st.appMinutes || getAppMinutes();
+  let screenSection = `📱 EKRAN SÜRESİ\n`;
+  screenSection += `Uygulamada geçirilen süre: ${appMins} dakika\n`;
+  if (st.totalMinutes) {
+    screenSection += `Toplam telefon ekran süresi: ${st.totalMinutes} dakika`;
+    const outside = st.totalMinutes - appMins;
+    if (outside > 0) screenSection += `\nUygulama dışı telefon kullanımı: ${outside} dakika`;
+  } else {
+    screenSection += `Toplam telefon ekran süresi: (girilmedi)`;
+  }
+
+  // Streak özeti
+  const streakSection = `📊 GENEL DURUM\nProgram zinciri: ${state.streak.current} gün | En uzun: ${state.streak.longest} gün\nSpor zinciri: ${state.sportStreak.current} gün\nToplam Kuran günü: ${Object.values(state.kuranData).filter(d => d && d.read).length} gün\nİlerleme: %${pct} (${doneCount}/${filtered.length} görev tamamlandı)`;
+
+  const separator = '\n' + '─'.repeat(40) + '\n';
+
+  return {
+    dateStr,
+    body: `Selâmün aleyküm anne baba,
+
+Hatice'nin günlük raporu — ${dateStr}
+
+📋 GÜNLÜK PROGRAM
+${blockLines}
+${separator}
+${screenSection}
+${separator}
+${streakSection}
+${separator}
+${kuranSection}
+${separator}
+${sportSection}
+${separator}
+${sentenceSection}
+${separator}
+${writingSection}
+${separator}
+${bookSection}
+${separator}
+${journalSection}
+
+Sevgiler,
+Hatice`
+  };
+}
+
+function sendReportAuto() {
+  // Background auto-send via EmailJS (no UI feedback to user)
+  if (typeof emailjs === 'undefined') return;
+  const today = todayKey();
+  if (state.lastReportSent === today) return; // already sent today
+  const r = generateReport();
+  const recipients = ['oaydemir@worldcentralkitchen.org', 'amazonturkusa@gmail.com'];
+  recipients.forEach(email => {
+    emailjs.send('service_1nak2td', 'template_yq6pglm', {
+      to_email: email,
+      date: r.dateStr,
+      report_body: r.body
+    }).catch(err => console.log('Email gönderilemedi:', err));
+  });
+  state.lastReportSent = today;
+  saveState();
+}
+
+function openMailto() {
+  const r = generateReport();
+  const subject = encodeURIComponent(`Hatice'nin günlük raporu — ${r.dateStr}`);
+  const body = encodeURIComponent(r.body);
+  const recipients = 'oaydemir@worldcentralkitchen.org,amazonturkusa@gmail.com';
+  // Trigger background auto-send too
+  sendReportAuto();
+  // Open mail app
+  window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
+  closeReportModal();
+}
+
+function openReportModal() {
+  document.getElementById('reportOverlay').classList.add('show');
+}
+
+function closeReportModal() {
+  document.getElementById('reportOverlay').classList.remove('show');
+}
+
+function skipReport() {
+  // Still send auto backup
+  sendReportAuto();
+  closeReportModal();
+}
+
+function checkReportTime() {
+  // Auto-show modal at 21:00 once per day
+  const now = new Date();
+  const today = todayKey();
+  if (now.getHours() >= 21 && state.lastReportPrompt !== today) {
+    state.lastReportPrompt = today;
+    saveState();
+    openReportModal();
+  }
+}
+
+function showView(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-' + name).classList.add('active');
+  if (name === 'learn') renderLearn();
+  if (name === 'sport') renderSport();
+  if (name === 'write') renderWrite();
+}
+function changeName() {
+  const newName = prompt('Yeni isim:', state.name);
+  if (newName && newName.trim()) {
+    state.name = newName.trim();
+    saveState();
+    document.getElementById('userName').textContent = state.name;
+    document.getElementById('currentName').textContent = state.name;
+  }
+}
+function exportData() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'programim_yedek_' + todayKey() + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+function resetAll() {
+  if (confirm('Tüm verileri sıfırlamak istediğine emin misin?')) {
+    if (confirm('Gerçekten emin misin?')) {
+      localStorage.removeItem(STORAGE_KEY); location.reload();
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  if (state.setupDone && state.name) initApp();
+  else document.getElementById('nameInput').focus();
+});
+document.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && document.getElementById('setup').style.display !== 'none') completeSetup();
+});
+</script>
+</body>
+</html>
